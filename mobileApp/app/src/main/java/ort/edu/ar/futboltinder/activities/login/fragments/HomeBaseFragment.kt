@@ -26,7 +26,6 @@ class HomeBaseFragment : Fragment() {
         vista = inflater.inflate(R.layout.fragment_home_base, container, false)
         registrationButton = vista.findViewById(R.id.homeRegistrationButton)
         loginButton = vista.findViewById(R.id.homeLoginButton)
-        // Inflate the layout for this fragment
         return vista
     }
 
@@ -39,8 +38,8 @@ class HomeBaseFragment : Fragment() {
         }
 
         loginButton.setOnClickListener {
-            val action = HomeBaseFragmentDirections.actionHomeBaseFragmentToLoginFragment()
-            vista.findNavController().navigate(action)
+            val action2 = HomeBaseFragmentDirections.actionHomeBaseFragmentToLoginFragment()
+            vista.findNavController().navigate(action2)
         }
     }
 }
