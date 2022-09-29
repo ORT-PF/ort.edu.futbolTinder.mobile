@@ -6,13 +6,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Url
 
 object RetrofitClientBuilder {
-    val baseUrl = "https://localhost:5001/"
+    val baseUrl = "https://625df5ed6c48e8761ba34b95.mockapi.io/"
 
-    fun<T> buildService(service: Class<T>, url: String): T{
+    fun<T> buildService(service: Class<T>): T{
         val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl.plus(url)) // change this IP for testing by your actual machine IP
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(getClient())
             .build()
         return retrofit.create(service)
+    }
+
+    private fun getClient(): OkHttpClient {
+        //return OkHttpClient.Builder().addInterceptor(customInterceptor()).build()
+       return OkHttpClient.Builder().build()//
     }
 }

@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import okhttp3.internal.wait
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
@@ -43,8 +45,13 @@ class LoginFragment : Fragment() {
             var passwordInput = passwordText.text.toString()
             var authenticatedUser = authenticationService.authenticate(UserAuthenticationForm(userInput, passwordInput))
 
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
+            if(authenticatedUser == null){
+                Toast.makeText(activity, "An error occurred while attempting to login", Toast.LENGTH_LONG)
+            }
+            else{
+                val intent = Intent(activity, HomeActivity::class.java)
+                startActivity(intent)
+            }
         }
 
     }
