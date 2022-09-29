@@ -17,12 +17,15 @@ class AuthenticationService {
     fun authenticate(user: UserAuthenticationForm) : UserAuthenticationResponse? {
 
         var responseToReturn = listOf<UserAuthenticationResponse>()
-        CoroutineScope(Dispatchers.IO).launch {
+        var response = CoroutineScope(Dispatchers.IO).launch {
             val retrofitClient = RetrofitClientBuilder.buildService(
                 TestAPiService::class.java
             )
             val response = retrofitClient.authenticateUser()
             responseToReturn = response.body()!!
+        }
+        while(!response.isCompleted){
+            continue
         }
         return responseToReturn.firstOrNull()
     }
