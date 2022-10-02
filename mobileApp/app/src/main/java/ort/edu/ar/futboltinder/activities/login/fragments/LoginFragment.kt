@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
             var authenticatedUser = authenticationService.authenticate(UserAuthenticationForm(userInput, passwordInput))
 
             if(authenticatedUser == null){
-                Toast.makeText(activity, "An error occurred while attempting to login", Toast.LENGTH_LONG)
+                Toast.makeText(activity, "An error occurred while attempting to login", 2)
             }
             else{
                 val intent = Intent(activity, HomeActivity::class.java)

@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
 import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Authentication.RetrofitAuthenticationService
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Authentication.TestAPiService
 
 class AuthenticationService {
@@ -16,17 +17,19 @@ class AuthenticationService {
 
     fun authenticate(user: UserAuthenticationForm) : UserAuthenticationResponse? {
 
-        var responseToReturn = listOf<UserAuthenticationResponse>()
+        var responseToReturn : UserAuthenticationResponse? = null
         var response = CoroutineScope(Dispatchers.IO).launch {
             val retrofitClient = RetrofitClientBuilder.buildService(
-                TestAPiService::class.java
+                RetrofitAuthenticationService::class.java
             )
-            val response = retrofitClient.authenticateUser()
-            responseToReturn = response.body()!!
+            val response = retrofitClient.authenticateUser(user)
+            if(response.isSuccessful){
+                responseToReturn = response.body()!!
+            }
         }
         while(!response.isCompleted){
             continue
         }
-        return responseToReturn.firstOrNull()
+        return responseToReturn
     }
 }

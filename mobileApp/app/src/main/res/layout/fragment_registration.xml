@@ -37,43 +37,13 @@
             app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registrationTextView"
-            app:layout_constraintVertical_bias="0.054" />
-
-        <EditText
-            android:id="@+id/lastNameFieldRegistrationForm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="@string/lastNameFieldRegistrationFormText"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameFieldRegistrationForm"
-            app:layout_constraintVertical_bias="0.082" />
-
-        <EditText
-            android:id="@+id/userNameFieldRegistrationForm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="@string/usernameFieldRegistrationFormText"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameFieldRegistrationForm"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.089" />
 
         <EditText
             android:id="@+id/emailFieldRegistrationForm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="444dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
@@ -81,9 +51,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNameFieldRegistrationForm"
-            app:layout_constraintVertical_bias="0.133" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/passwordFieldRegistrationForm"
@@ -98,7 +66,7 @@
             app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailFieldRegistrationForm"
-            app:layout_constraintVertical_bias="0.207" />
+            app:layout_constraintVertical_bias="0.161" />
 
         <EditText
             android:id="@+id/passwordBisFieldRegistrationForm"
@@ -113,19 +81,19 @@
             app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordFieldRegistrationForm"
-            app:layout_constraintVertical_bias="0.33" />
+            app:layout_constraintVertical_bias="0.255" />
 
         <Button
             android:id="@+id/registrationFormButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/homeRegistrationButtonText"
+            android:text="Siguiente"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.211"
+            app:layout_constraintHorizontal_bias="0.224"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordBisFieldRegistrationForm"
-            app:layout_constraintVertical_bias="0.509" />
+            app:layout_constraintVertical_bias="0.353" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
