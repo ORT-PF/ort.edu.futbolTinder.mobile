@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">futbolTinder</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="registrationFragmentBaseText">Registro</string>
+    <string name="nameFieldRegistrationFormText">Nombre</string>
+    <string name="lastNameFieldRegistrationFormText">Apellido</string>
+    <string name="usernameFieldRegistrationFormText">Nombre de usuario</string>
+    <string name="emailFieldRegistrationFormText">Email</string>
+    <string name="passwordFieldRegistrationFormText">Contraseña</string>
+    <string name="passwordBisFieldRegistrationFormText">Repita contraseña</string>
+    <string name="registrationFormButtonText">Registrarse</string>
+    <string name="homeLoginBaseText">Futbol Tinder App!</string>
+    <string name="homeRegistrationButtonText">Registrarse</string>
+    <string name="homeLoginButtonText">Iniciar sesión</string>
+</resources>
