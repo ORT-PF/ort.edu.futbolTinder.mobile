@@ -43,26 +43,39 @@ class RegistrationFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         registrationButton.setOnClickListener {
-            if(userNameText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "El nombre de usuario es requerido", Toast.LENGTH_LONG)
-            }
-            if(userEmailText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "El mail es requerido", Toast.LENGTH_LONG)
-            }
-            if(passwordText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "El password es requerido", Toast.LENGTH_LONG)
-            }
-            if(passwordBisText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "La repetición del password es requerida", Toast.LENGTH_LONG)
-            }
-            if(!passwordText.text.equals(passwordBisText.text)){
-                Toast.makeText(activity, "Los passwords ingresados no coinciden", Toast.LENGTH_LONG)
-            }
-            var userRegForm = UserRegistrationForm(userNameText.text.toString(), userEmailText.text.toString(), passwordText.text.toString())
-            registrationService.register(userRegForm)
+            var isValidContext = validateContext()
 
-            val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
-            vista.findNavController().navigate(action)
+            if(isValidContext){
+                var userRegForm = UserRegistrationForm(userNameText.text.toString(), userEmailText.text.toString(), passwordText.text.toString())
+                registrationService.register(userRegForm)
+
+                val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+                vista.findNavController().navigate(action)
+            }
         }
+    }
+
+    private fun validateContext() : Boolean{
+        if(userNameText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "El nombre de usuario es requerido", Toast.LENGTH_LONG)
+            return false
+        }
+        if(userEmailText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "El mail es requerido", Toast.LENGTH_LONG)
+            return false
+        }
+        if(passwordText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "El password es requerido", Toast.LENGTH_LONG)
+            return false
+        }
+        if(passwordBisText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "La repetición del password es requerida", Toast.LENGTH_LONG)
+            return false
+        }
+        if(!passwordText.text.equals(passwordBisText.text)){
+            Toast.makeText(activity, "Los passwords ingresados no coinciden", Toast.LENGTH_LONG)
+            return false
+        }
+        return true
     }
 }
