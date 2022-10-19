@@ -72,7 +72,7 @@ class RegistrationFragment : Fragment() {
             Toast.makeText(activity, "La repetición del password es requerida", Toast.LENGTH_LONG)
             return false
         }
-        if(!passwordText.text.equals(passwordBisText.text)){
+        if(passwordText.text.equals(passwordBisText.text)){
             Toast.makeText(activity, "Los passwords ingresados no coinciden", Toast.LENGTH_LONG)
             return false
         }
