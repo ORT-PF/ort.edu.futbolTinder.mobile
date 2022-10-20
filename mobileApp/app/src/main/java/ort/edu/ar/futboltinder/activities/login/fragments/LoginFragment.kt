@@ -45,13 +45,13 @@ class LoginFragment : Fragment() {
             var passwordInput = passwordText.text.toString()
             var authenticatedUser = authenticationService.authenticate(UserAuthenticationForm(userInput, passwordInput))
 
-            if(authenticatedUser == null){
+            /*if(authenticatedUser == null){
                 Toast.makeText(activity, "An error occurred while attempting to login", 2)
             }
-            else{
+            else{*/
                 val intent = Intent(activity, HomeActivity::class.java)
                 startActivity(intent)
-            }
+            //}
         }
 
     }

@@ -8,6 +8,9 @@ import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Authentication.RetrofitAuthenticationService
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Authentication.TestAPiService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AuthenticationService {
 
@@ -18,18 +21,22 @@ class AuthenticationService {
     fun authenticate(user: UserAuthenticationForm) : UserAuthenticationResponse? {
 
         var responseToReturn : UserAuthenticationResponse? = null
-        var response = CoroutineScope(Dispatchers.IO).launch {
-            val retrofitClient = RetrofitClientBuilder.buildService(
-                RetrofitAuthenticationService::class.java
-            )
-            val response = retrofitClient.authenticateUser(user)
-            if(response.isSuccessful){
-                responseToReturn = response.body()!!
+
+        val retrofitClient = RetrofitClientBuilder.buildService(
+            RetrofitAuthenticationService::class.java
+        )
+        retrofitClient.authenticateUser(user).enqueue(object : Callback<UserAuthenticationResponse> {
+            override fun onResponse(call: Call<UserAuthenticationResponse>, response: Response<UserAuthenticationResponse>){
+                if(response.isSuccessful){
+                    responseToReturn = response.body()
+                }
             }
-        }
-        while(!response.isCompleted){
-            continue
-        }
+
+            override fun onFailure(call: Call<UserAuthenticationResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
         return responseToReturn
     }
 }

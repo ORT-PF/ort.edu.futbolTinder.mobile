@@ -22,8 +22,5 @@ class RegistrationService {
             if(!registrationResponse.isSuccessful)
                 throw Exception("An error occurred while attempting to register the user")
         }
-        while(!response.isCompleted){
-            continue
-        }
     }
 }
