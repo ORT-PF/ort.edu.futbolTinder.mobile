@@ -1,13 +1,10 @@
 package ort.edu.ar.futboltinder.services
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import android.util.Log
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
 import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Authentication.RetrofitAuthenticationService
-import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Authentication.TestAPiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +30,7 @@ class AuthenticationService {
             }
 
             override fun onFailure(call: Call<UserAuthenticationResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("Example", t.message.toString() + t.stackTraceToString())
             }
         })
 

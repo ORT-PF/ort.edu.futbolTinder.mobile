@@ -13,11 +13,11 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
 object RetrofitClientBuilder {
-    val baseUrl = "https://futbol-tinder-user-auth-api.herokuapp.com/" //Replace here with your local ip address. Make sure your local api is running on that ip
+    private val BASE_URL = "https://futbol-tinder-user-auth-api.herokuapp.com" //Replace here with your local ip address. Make sure your local api is running on that ip
 
     fun<T> buildService(service: Class<T>): T{
         val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(getClient())
             .build()

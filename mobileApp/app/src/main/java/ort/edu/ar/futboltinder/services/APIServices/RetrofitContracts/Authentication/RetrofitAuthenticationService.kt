@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 interface RetrofitAuthenticationService {
 
-    @Headers("Content-Type: application/json")
+    //@Headers("Content-Type: application/json")
     @POST("/api/auth")
     //fun authenticateUser(@Url url : String, @Body userData : UserAuthenticationForm ): Call<UserAuthenticationResponse>
     fun authenticateUser( @Body userData : UserAuthenticationForm ): Call<UserAuthenticationResponse>
