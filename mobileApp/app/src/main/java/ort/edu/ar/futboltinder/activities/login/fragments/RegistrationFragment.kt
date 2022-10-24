@@ -1,6 +1,8 @@
 package ort.edu.ar.futboltinder.activities.login.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +12,17 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.activities.home.HomeActivity
+import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.domain.Registration.Forms.UserRegistrationForm
+import ort.edu.ar.futboltinder.domain.Registration.Responses.UserRegistrationResponse
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Authentication.RetrofitAuthenticationService
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Registration.RetrofitRegistrationService
 import ort.edu.ar.futboltinder.services.RegistrationService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegistrationFragment : Fragment() {
     lateinit var vista : View
@@ -43,26 +54,55 @@ class RegistrationFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         registrationButton.setOnClickListener {
-            if(userNameText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "El nombre de usuario es requerido", Toast.LENGTH_LONG)
-            }
-            if(userEmailText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "El mail es requerido", Toast.LENGTH_LONG)
-            }
-            if(passwordText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "El password es requerido", Toast.LENGTH_LONG)
-            }
-            if(passwordBisText.text.isNullOrEmpty()){
-                Toast.makeText(activity, "La repetición del password es requerida", Toast.LENGTH_LONG)
-            }
-            if(!passwordText.text.equals(passwordBisText.text)){
-                Toast.makeText(activity, "Los passwords ingresados no coinciden", Toast.LENGTH_LONG)
-            }
-            var userRegForm = UserRegistrationForm(userNameText.text.toString(), userEmailText.text.toString(), passwordText.text.toString())
-            registrationService.register(userRegForm)
+            var isValidContext = validateContext()
 
-            val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
-            vista.findNavController().navigate(action)
+            if(isValidContext){
+                var userRegForm = UserRegistrationForm(userNameText.text.toString(), userEmailText.text.toString(), passwordText.text.toString())
+                registerUser(userRegForm)
+            }
         }
+    }
+
+    private fun validateContext() : Boolean{
+        if(userNameText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "El nombre de usuario es requerido", Toast.LENGTH_LONG)
+            return false
+        }
+        if(userEmailText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "El mail es requerido", Toast.LENGTH_LONG)
+            return false
+        }
+        if(passwordText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "El password es requerido", Toast.LENGTH_LONG)
+            return false
+        }
+        if(passwordBisText.text.isNullOrEmpty()){
+            Toast.makeText(activity, "La repetición del password es requerida", Toast.LENGTH_LONG)
+            return false
+        }
+        if(passwordText.text.equals(passwordBisText.text)){
+            Toast.makeText(activity, "Los passwords ingresados no coinciden", Toast.LENGTH_LONG)
+            return false
+        }
+        return true
+    }
+
+    private fun registerUser(user : UserRegistrationForm){
+        val retrofitClient = RetrofitClientBuilder.buildService(
+            RetrofitRegistrationService::class.java
+        )
+        retrofitClient.registerUser(user).enqueue(object :
+            Callback<UserRegistrationResponse> {
+            override fun onResponse(call: Call<UserRegistrationResponse>, response: Response<UserRegistrationResponse>){
+                if(response.isSuccessful){
+                    val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+                    vista.findNavController().navigate(action)
+                }
+            }
+
+            override fun onFailure(call: Call<UserRegistrationResponse>, t: Throwable) {
+                Log.e("Example", t.message.toString() + t.stackTraceToString())
+            }
+        })
     }
 }
