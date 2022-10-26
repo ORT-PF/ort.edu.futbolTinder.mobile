@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.model.Match
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,8 +43,14 @@ class MatchDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val label = view.findViewById<TextView>(R.id.textView)
-        label.text = MatchDetailFragmentArgs.fromBundle(requireArguments()).match.address
+        val matchName = view.findViewById<TextView>(R.id.textViewName)
+        matchName.text = "Nombre: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.name
+
+        val matchAdress = view.findViewById<TextView>(R.id.textViewAdress)
+        matchAdress.text = "Direccion: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.address
+
+        val matchQuotaNumber = view.findViewById<TextView>(R.id.textViewQuotaNumber)
+        matchQuotaNumber.text = "Jugadores: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.quotaNumber.toString()
     }
 
     companion object {
