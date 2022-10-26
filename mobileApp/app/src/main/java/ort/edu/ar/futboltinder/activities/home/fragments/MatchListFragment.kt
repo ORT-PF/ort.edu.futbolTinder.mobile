@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.adapter.MatchAdapter
 import ort.edu.ar.futboltinder.model.Match
 
 class MatchListFragment : Fragment() {
@@ -34,6 +37,13 @@ class MatchListFragment : Fragment() {
 
         //Agrego los partidos a una lista.
         val matches = listOf<Match>(match1,match2,match3,match4,match5)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val adapter = MatchAdapter(matches)
+        recyclerView.layoutManager =LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+
+
 
     }
 
