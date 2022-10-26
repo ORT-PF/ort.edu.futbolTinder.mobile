@@ -23,4 +23,8 @@
     For more information, see https://support.google.com/admob/answer/3052638
 <!- -->
     <string name="interstitial_ad_unit_id">YOUR_INTERSTITIAL_AD_UNIT_ID</string>
+    <string name="inicio">Inicio</string>
+    <string name="cantidad_de_cupos">Cantidad de cupos</string>
+    <string name="crear">Crear</string>
+    <string name="direcci_n">Dirección</string>
 </resources>

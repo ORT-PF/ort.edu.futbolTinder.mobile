@@ -11,8 +11,8 @@
         android:label="fragment_match_creator"
         tools:layout="@layout/fragment_match_creator" >
         <action
-            android:id="@+id/action_matchCreatorFragment_to_exitoFragment"
-            app:destination="@id/exitoFragment" />
+            android:id="@+id/action_matchCreatorFragment_to_successFragment"
+            app:destination="@id/successFragment" />
     </fragment>
     <fragment
         android:id="@+id/matchListFragment"
@@ -25,12 +25,12 @@
         android:label="fragment_match_base"
         tools:layout="@layout/fragment_match_base" />
     <fragment
-        android:id="@+id/exitoFragment"
-        android:name="ort.edu.ar.futboltinder.activities.home.fragments.ExitoFragment"
-        android:label="fragment_exito"
-        tools:layout="@layout/fragment_exito" >
+        android:id="@+id/successFragment"
+        android:name="ort.edu.ar.futboltinder.activities.home.fragments.SuccessFragment"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_success">
         <action
-            android:id="@+id/action_exitoFragment_to_matchBaseFragment"
+            android:id="@+id/action_successFragment_to_matchBaseFragment"
             app:destination="@id/matchBaseFragment" />
     </fragment>
 </navigation>

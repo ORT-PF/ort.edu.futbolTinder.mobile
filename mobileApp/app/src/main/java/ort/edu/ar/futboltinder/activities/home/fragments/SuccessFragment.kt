@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
 
 
-class ExitoFragment : Fragment() {
+class SuccessFragment : Fragment() {
 
     lateinit var vista : View
     lateinit var backButton : Button
@@ -25,7 +25,7 @@ class ExitoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_exito, container, false)
+        vista = inflater.inflate(R.layout.fragment_success, container, false)
         backButton = vista.findViewById(R.id.backButton)
 
         return vista
@@ -35,7 +35,7 @@ class ExitoFragment : Fragment() {
         super.onStart()
 
         backButton.setOnClickListener(){
-            val action = ExitoFragmentDirections.actionExitoFragmentToMatchBaseFragment()
+            val action = SuccessFragmentDirections.actionSuccessFragmentToMatchBaseFragment()
             vista.findNavController().navigate(action)
 
         }

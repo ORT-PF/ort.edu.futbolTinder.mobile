@@ -7,16 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.login.fragments.RegistrationFragmentDirections
+import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
+import ort.edu.ar.futboltinder.domain.Registration.Forms.UserRegistrationForm
 
 
 class MatchCreatorFragment : Fragment() {
+    lateinit var vista: View
+    lateinit var matchCreateButton: Button
+    lateinit var nameText: EditText
+    lateinit var addressText: EditText
+    lateinit var quotaNumber: EditText
+    //lateinit var dateText: EditText
 
-    lateinit var vista : View
-    lateinit var matchCreateButton : Button
-    lateinit var txtInput: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,20 +29,46 @@ class MatchCreatorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_match_creator, container, false)
-
-        matchCreateButton = vista.findViewById(R.id.createMatchButton)
+        nameText = vista.findViewById(R.id.nameMatchCreatorForm)
+        addressText = vista.findViewById(R.id.addressMatchCreatorForm)
+        quotaNumber = vista.findViewById(R.id.quotaMatchCreatorForm)
+        matchCreateButton = vista.findViewById(R.id.buttonMatchCreatorForm)
 
         return vista
     }
 
-    override fun onStart(){
+    override fun onStart() {
         super.onStart()
         matchCreateButton.setOnClickListener {
-                val action = MatchCreatorFragmentDirections.actionMatchCreatorFragmentToExitoFragment()
+            var isValidContext = validateContext()
+
+            if (isValidContext) {
+                var matchCreatorForm = MatchCreatorForm(
+                    nameText.text.toString(),
+                    addressText.text.toString(),
+                    quotaNumber.text.toString().toInt()
+                )
+                //matchCreatorService.register(matchCreatorForm)
+                Toast.makeText(activity,matchCreatorForm.toString(), Toast.LENGTH_SHORT).show()
+                val action =
+                    MatchCreatorFragmentDirections.actionMatchCreatorFragmentToSuccessFragment()
                 vista.findNavController().navigate(action)
             }
         }
-
-
-
-}
+    }
+        private fun validateContext(): Boolean {
+            if (nameText.text.isNullOrEmpty()) {
+                Toast.makeText(activity, "El nombre de la cancha es requerido", Toast.LENGTH_LONG).show()
+                return false
+            }
+            if (addressText.text.isNullOrEmpty()) {
+                Toast.makeText(activity, "La dirección es requerida", Toast.LENGTH_LONG).show()
+                return false
+            }
+            if (quotaNumber.text.isNullOrEmpty()) {
+                Toast.makeText(activity, "El cupo de jugadores es requerido", Toast.LENGTH_LONG).show()
+                return false
+            }
+            return true
+        }
+    }

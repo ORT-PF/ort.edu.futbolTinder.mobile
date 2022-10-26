@@ -22,18 +22,18 @@
                     android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.323"
+                    app:layout_constraintHorizontal_bias="0.254"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.149" />
+                    app:layout_constraintVertical_bias="0.068" />
 
                 <EditText
-                    android:id="@+id/createMatchEditText"
+                    android:id="@+id/nameMatchCreatorForm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:ems="10"
-                    android:hint="Nombre de cancha"
+                    android:hint="Nombre de la cancha"
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -41,15 +41,15 @@
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/createMatchTextView"
-                    app:layout_constraintVertical_bias="0.071" />
+                    app:layout_constraintVertical_bias="0.077" />
 
                 <EditText
-                    android:id="@+id/createMatchEditText2"
+                    android:id="@+id/addressMatchCreatorForm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:ems="10"
-                    android:hint="Dirección"
+                    android:hint="@string/direcci_n"
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -57,33 +57,34 @@
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/createMatchTextView"
-                    app:layout_constraintVertical_bias="0.285" />
+                    app:layout_constraintVertical_bias="0.268" />
 
                 <Button
-                    android:id="@+id/createMatchButton"
+                    android:id="@+id/buttonMatchCreatorForm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Crear"
+                    android:text="@string/crear"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/createMatchEditText"
+                    app:layout_constraintTop_toBottomOf="@+id/nameMatchCreatorForm"
                     app:layout_constraintVertical_bias="0.875" />
 
                 <EditText
-                    android:id="@+id/editTextNumber"
+                    android:id="@+id/quotaMatchCreatorForm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Cantidad de cupos"
+                    android:hint="@string/cantidad_de_cupos"
                     android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.637" />
+                    app:layout_constraintVertical_bias="0.575" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

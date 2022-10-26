@@ -3,7 +3,7 @@
 
     <item
         android:id= "@+id/matchBaseFragment"
-        android:title="Inicio"/>
+        android:title="@string/inicio"/>
     <item
         android:id= "@+id/matchCreatorFragment"
         android:title="Crear Partido"/>
