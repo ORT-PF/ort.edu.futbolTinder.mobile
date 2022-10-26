@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.model.Match
 
 class MatchListFragment : Fragment() {
 
@@ -19,6 +20,21 @@ class MatchListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //Ahora hardcodeamos los partidos luego usaremos una API.
+        val match1 = Match("Partido1","Picheuta 1234", 10)
+        val match2 = Match("Partido2","San Juan 3478", 10)
+        val match3 = Match("Partido3","Rojas 4137", 10)
+        val match4 = Match("Partido4","Drumond 2103", 10)
+        val match5 = Match("Partido5","Bolivar 255", 10)
+
+        //Agrego los partidos a una lista.
+        val matches = listOf<Match>(match1,match2,match3,match4,match5)
+
     }
 
     override fun onStart(){
