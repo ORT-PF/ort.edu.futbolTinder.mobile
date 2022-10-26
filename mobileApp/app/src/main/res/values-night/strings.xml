@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nombre_de_la_cancha">Nombre de la Cancha</string>
+    <string name="inicio">Inicio</string>
+    <string name="cantidad_de_cupos">Cantidad de cupos</string>
+    <string name="crear">Crear</string>
+    <string name="direcci_n">Dirección</string>
+</resources>
