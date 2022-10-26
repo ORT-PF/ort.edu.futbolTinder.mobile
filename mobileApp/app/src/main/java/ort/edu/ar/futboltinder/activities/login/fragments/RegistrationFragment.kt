@@ -1,6 +1,7 @@
 package ort.edu.ar.futboltinder.activities.login.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,12 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.domain.Registration.Forms.UserRegistrationForm
-import ort.edu.ar.futboltinder.services.RegistrationService
+import ort.edu.ar.futboltinder.domain.Registration.Responses.UserRegistrationResponse
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.Registration.RetrofitRegistrationService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegistrationFragment : Fragment() {
     lateinit var vista : View
@@ -20,7 +26,6 @@ class RegistrationFragment : Fragment() {
     lateinit var passwordBisText : EditText
     lateinit var  userEmailText : EditText
     lateinit var registrationButton : Button
-    private val registrationService = RegistrationService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,10 +52,7 @@ class RegistrationFragment : Fragment() {
 
             if(isValidContext){
                 var userRegForm = UserRegistrationForm(userNameText.text.toString(), userEmailText.text.toString(), passwordText.text.toString())
-                registrationService.register(userRegForm)
-
-                val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
-                vista.findNavController().navigate(action)
+                registerUser(userRegForm)
             }
         }
     }
@@ -77,5 +79,24 @@ class RegistrationFragment : Fragment() {
             return false
         }
         return true
+    }
+
+    private fun registerUser(user : UserRegistrationForm){
+        val retrofitClient = RetrofitClientBuilder.buildService(
+            RetrofitRegistrationService::class.java
+        )
+        retrofitClient.registerUser(user).enqueue(object :
+            Callback<UserRegistrationResponse> {
+            override fun onResponse(call: Call<UserRegistrationResponse>, response: Response<UserRegistrationResponse>){
+                if(response.isSuccessful){
+                    val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+                    vista.findNavController().navigate(action)
+                }
+            }
+
+            override fun onFailure(call: Call<UserRegistrationResponse>, t: Throwable) {
+                Log.e("Example", t.message.toString() + t.stackTraceToString())
+            }
+        })
     }
 }
