@@ -5,13 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.adapter.MatchAdapter
+import ort.edu.ar.futboltinder.listener.OnMatchClickedListener
 import ort.edu.ar.futboltinder.model.Match
 
-class MatchListFragment : Fragment() {
+class MatchListFragment : Fragment(),OnMatchClickedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,15 +41,18 @@ class MatchListFragment : Fragment() {
         val matches = listOf<Match>(match1,match2,match3,match4,match5)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = MatchAdapter(matches)
+        val adapter = MatchAdapter(matches,this)
         recyclerView.layoutManager =LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
-
-
     }
+
 
     override fun onStart(){
         super.onStart()
+    }
+
+    override fun onMatchSelected(match: Match) {
+        findNavController().navigate(MatchListFragmentDirections.actionMatchListFragmentToMatchDetailFragment(match))
     }
 }
