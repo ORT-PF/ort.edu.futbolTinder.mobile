@@ -9,11 +9,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.adapter.MatchAdapter
-import ort.edu.ar.futboltinder.activities.listener.OnMatchClickedListener
+import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchAdapter
+import ort.edu.ar.futboltinder.activities.helpers.listener.OnMatchClickedListener
 import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
 
-class MatchListFragment : Fragment(),OnMatchClickedListener {
+class MatchListFragment : Fragment(), OnMatchClickedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

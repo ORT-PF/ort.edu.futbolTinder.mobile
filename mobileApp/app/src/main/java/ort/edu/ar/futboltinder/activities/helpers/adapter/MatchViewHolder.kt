@@ -1,4 +1,4 @@
-package ort.edu.ar.futboltinder.activities.adapter
+package ort.edu.ar.futboltinder.activities.helpers.adapter
 
 import android.view.View
 import android.widget.TextView

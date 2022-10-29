@@ -1,4 +1,4 @@
-package ort.edu.ar.futboltinder.activities.listener
+package ort.edu.ar.futboltinder.activities.helpers.listener
 
 import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
 
