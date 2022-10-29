@@ -12,6 +12,7 @@
     <string name="homeLoginBaseText">Futbol Tinder App!</string>
     <string name="homeRegistrationButtonText">Registrarse</string>
     <string name="homeLoginButtonText">Iniciar sesión</string>
+    <string name="joinMatchButton">Unirme!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="crear_partido">Crear Partido</string>

@@ -1,0 +1,68 @@
+package ort.edu.ar.futboltinder.activities.home.fragments
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import ort.edu.ar.futboltinder.R
+
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [MatchDetailFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class MatchDetailFragment : Fragment() {
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_match_detail2, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val matchName = view.findViewById<TextView>(R.id.textViewName)
+        matchName.text = "Nombre: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.name
+
+        val matchAdress = view.findViewById<TextView>(R.id.textViewAdress)
+        matchAdress.text = "Direccion: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.address
+
+        val matchQuotaNumber = view.findViewById<TextView>(R.id.textViewQuotaNumber)
+        matchQuotaNumber.text = "Jugadores: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.quotaNumber.toString()
+    }
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment MatchDetailFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            MatchDetailFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
+}
