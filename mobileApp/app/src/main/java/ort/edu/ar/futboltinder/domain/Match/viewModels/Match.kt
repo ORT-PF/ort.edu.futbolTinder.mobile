@@ -1,4 +1,4 @@
-package ort.edu.ar.futboltinder.model
+package ort.edu.ar.futboltinder.domain.Match.viewModels
 
 import android.os.Parcel
 import android.os.Parcelable

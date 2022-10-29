@@ -9,9 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.adapter.MatchAdapter
-import ort.edu.ar.futboltinder.listener.OnMatchClickedListener
-import ort.edu.ar.futboltinder.model.Match
+import ort.edu.ar.futboltinder.activities.adapter.MatchAdapter
+import ort.edu.ar.futboltinder.activities.listener.OnMatchClickedListener
+import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
 
 class MatchListFragment : Fragment(),OnMatchClickedListener {
 

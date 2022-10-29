@@ -1,11 +1,11 @@
-package ort.edu.ar.futboltinder.adapter
+package ort.edu.ar.futboltinder.activities.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.listener.OnMatchClickedListener
-import ort.edu.ar.futboltinder.model.Match
+import ort.edu.ar.futboltinder.activities.listener.OnMatchClickedListener
+import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
 
 class MatchAdapter(
     private val matchList: List<Match>,

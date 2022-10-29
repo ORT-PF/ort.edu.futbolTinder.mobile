@@ -44,6 +44,6 @@
         tools:layout="@layout/fragment_match_detail2" >
         <argument
             android:name="match"
-            app:argType="ort.edu.ar.futboltinder.model.Match" />
+            app:argType="ort.edu.ar.futboltinder.domain.Match.viewModels.Match" />
     </fragment>
 </navigation>

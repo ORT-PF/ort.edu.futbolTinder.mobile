@@ -1,10 +1,10 @@
-package ort.edu.ar.futboltinder.adapter
+package ort.edu.ar.futboltinder.activities.adapter
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.model.Match
+import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
 
 class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
