@@ -28,4 +28,5 @@
     <string name="cantidad_de_cupos">Cantidad de cupos</string>
     <string name="crear">Crear</string>
     <string name="direcci_n">Dirección</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

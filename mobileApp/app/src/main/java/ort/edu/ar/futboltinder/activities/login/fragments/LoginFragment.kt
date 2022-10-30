@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
+import ort.edu.ar.futboltinder.activities.maps.MapsActivity
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
 import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
@@ -61,7 +62,7 @@ class LoginFragment : Fragment() {
             Callback<UserAuthenticationResponse> {
             override fun onResponse(call: Call<UserAuthenticationResponse>, response: Response<UserAuthenticationResponse>){
                 if(response.isSuccessful){
-                    val intent = Intent(activity, HomeActivity::class.java)
+                    val intent = Intent(activity, MapsActivity::class.java)
                     startActivity(intent)
                 }
             }
