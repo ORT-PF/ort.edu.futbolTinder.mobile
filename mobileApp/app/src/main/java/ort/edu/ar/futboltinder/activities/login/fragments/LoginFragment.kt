@@ -12,7 +12,6 @@ import android.widget.EditText
 import android.widget.Toast
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
-import ort.edu.ar.futboltinder.activities.maps.MapsActivity
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
 import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
