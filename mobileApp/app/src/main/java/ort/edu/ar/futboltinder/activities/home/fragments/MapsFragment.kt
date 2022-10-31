@@ -31,8 +31,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.maps.MapsActivity
-import ort.edu.ar.futboltinder.databinding.ActivityMapsBinding
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreationPostModel
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
 
@@ -41,7 +39,6 @@ class MapsFragment : Fragment() {
     private var locationPermissionGranted = false
     private var cameraPosition: CameraPosition? = null
     private lateinit var map: GoogleMap
-    private lateinit var binding: ActivityMapsBinding
     private var lastKnownLocation: Location? = null
     private val defaultLocation = LatLng(-33.8523341, 151.2106085)
     private lateinit var addressSearcher : EditText
