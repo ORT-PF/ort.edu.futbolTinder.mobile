@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.databinding.ActivityMapsBinding
+import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -43,6 +44,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapActivityOkButton : Button
     private var selectedMarker : Marker? = null
     private lateinit var geoCoder : Geocoder
+    private lateinit var match: MatchCreatorForm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +55,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION)
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION)
         }
+
+        match = intent.getSerializableExtra("match") as MatchCreatorForm
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
