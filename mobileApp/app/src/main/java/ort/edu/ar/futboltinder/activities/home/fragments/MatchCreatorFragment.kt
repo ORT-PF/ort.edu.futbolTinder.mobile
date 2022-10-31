@@ -18,7 +18,6 @@ class MatchCreatorFragment : Fragment() {
     lateinit var vista: View
     lateinit var matchCreateButton: Button
     lateinit var nameText: EditText
-    lateinit var addressText: EditText
     lateinit var quotaNumber: EditText
     //lateinit var dateText: EditText
 
@@ -30,7 +29,6 @@ class MatchCreatorFragment : Fragment() {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_match_creator, container, false)
         nameText = vista.findViewById(R.id.nameMatchCreatorForm)
-        addressText = vista.findViewById(R.id.addressMatchCreatorForm)
         quotaNumber = vista.findViewById(R.id.quotaMatchCreatorForm)
         matchCreateButton = vista.findViewById(R.id.buttonMatchCreatorForm)
 
@@ -45,7 +43,6 @@ class MatchCreatorFragment : Fragment() {
             if (isValidContext) {
                 var matchCreatorForm = MatchCreatorForm(
                     nameText.text.toString(),
-                    addressText.text.toString(),
                     quotaNumber.text.toString().toInt()
                 )
                 //matchCreatorService.register(matchCreatorForm)
@@ -59,10 +56,6 @@ class MatchCreatorFragment : Fragment() {
         private fun validateContext(): Boolean {
             if (nameText.text.isNullOrEmpty()) {
                 Toast.makeText(activity, "El nombre de la cancha es requerido", Toast.LENGTH_LONG).show()
-                return false
-            }
-            if (addressText.text.isNullOrEmpty()) {
-                Toast.makeText(activity, "La dirección es requerida", Toast.LENGTH_LONG).show()
                 return false
             }
             if (quotaNumber.text.isNullOrEmpty()) {

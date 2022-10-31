@@ -4,11 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 class MatchCreatorForm (
     @SerializedName("name") var name : String,
-    @SerializedName("address") var address : String,
     @SerializedName("quota") var quota : Int,
    // @SerializedName("date") var date : String
-){
+) :java.io.Serializable {
     override fun toString(): String {
-        return name + address + quota
+        return name + quota
     }
 }

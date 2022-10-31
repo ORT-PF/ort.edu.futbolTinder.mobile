@@ -50,7 +50,7 @@ class LoginFragment : Fragment() {
             var passwordInput = passwordText.text.toString()
             var userToAuthenticate = UserAuthenticationForm(userInput, passwordInput)
 
-            val intent = Intent(activity, MapsActivity::class.java)
+            val intent = Intent(activity, HomeActivity::class.java)
             startActivity(intent)
         }
 
@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
             Callback<UserAuthenticationResponse> {
             override fun onResponse(call: Call<UserAuthenticationResponse>, response: Response<UserAuthenticationResponse>){
                 if(response.isSuccessful){
-                    val intent = Intent(activity, MapsActivity::class.java)
+                    val intent = Intent(activity, HomeActivity::class.java)
                     startActivity(intent)
                 }
             }
