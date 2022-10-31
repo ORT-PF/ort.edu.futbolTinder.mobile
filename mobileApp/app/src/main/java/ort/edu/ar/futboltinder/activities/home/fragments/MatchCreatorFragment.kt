@@ -48,9 +48,12 @@ class MatchCreatorFragment : Fragment() {
                     quotaNumber.text.toString().toInt()
                 )
                 //matchCreatorService.register(matchCreatorForm)
-                val intent = Intent(activity, MapsActivity::class.java)
+                /*val intent = Intent(activity, MapsActivity::class.java)
                 intent.putExtra("match", matchCreatorForm)
-                startActivity(intent)
+                startActivity(intent)*/
+                val action =
+                    MatchCreatorFragmentDirections.actionMatchCreatorFragmentToMapsFragment()
+                vista.findNavController().navigate(action)
             }
         }
     }
