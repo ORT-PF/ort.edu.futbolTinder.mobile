@@ -8,6 +8,13 @@
         <entry key="..\:/Proyectos/ProysPracticaAndroid/proyectoFinal/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_home_base.xml" value="0.22" />
         <entry key="..\:/Proyectos/ProysPracticaAndroid/proyectoFinal/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Proyectos/ProysPracticaAndroid/proyectoFinal/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_registration.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/fvazquez/AndroidStudioProjects/ort.edu.futbolTinder.mobile/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/activity_home.xml" value="0.275" />
+        <entry key="..\:/Users/fvazquez/AndroidStudioProjects/ort.edu.futbolTinder.mobile/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_address_location.xml" value="0.275" />
+        <entry key="..\:/Users/fvazquez/AndroidStudioProjects/ort.edu.futbolTinder.mobile/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_match_creator.xml" value="0.275" />
+        <entry key="..\:/Users/fvazquez/AndroidStudioProjects/ort.edu.futbolTinder.mobile/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_match_detail.xml" value="0.33106884057971014" />
+        <entry key="..\:/Users/fvazquez/AndroidStudioProjects/ort.edu.futbolTinder.mobile/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_match_detail2.xml" value="0.33106884057971014" />
+        <entry key="..\:/Users/fvazquez/AndroidStudioProjects/ort.edu.futbolTinder.mobile/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/fragment_match_list.xml" value="0.275" />
+        <entry key="..\:/Users/fvazquez/AndroidStudioProjects/ort.edu.futbolTinder.mobile/ort.edu.futbolTinder.mobile/mobileApp/app/src/main/res/layout/match_item.xml" value="0.2496584699453552" />
       </map>
     </option>
   </component>
@@ -16,5 +23,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>
