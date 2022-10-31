@@ -1,6 +1,5 @@
 package ort.edu.ar.futboltinder.activities.home.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.maps.MapsActivity
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
-import ort.edu.ar.futboltinder.domain.Registration.Forms.UserRegistrationForm
 
 
 class MatchCreatorFragment : Fragment() {
@@ -45,14 +42,17 @@ class MatchCreatorFragment : Fragment() {
             if (isValidContext) {
                 var matchCreatorForm = MatchCreatorForm(
                     nameText.text.toString(),
-                    quotaNumber.text.toString().toInt()
+                    quotaNumber.text.toString().toInt(),
+                    null,
+                    null,
+                    null
                 )
                 //matchCreatorService.register(matchCreatorForm)
                 /*val intent = Intent(activity, MapsActivity::class.java)
                 intent.putExtra("match", matchCreatorForm)
                 startActivity(intent)*/
                 val action =
-                    MatchCreatorFragmentDirections.actionMatchCreatorFragmentToMapsFragment()
+                    MatchCreatorFragmentDirections.actionMatchCreatorFragmentToMapsFragment(matchCreatorForm)
                 vista.findNavController().navigate(action)
             }
         }

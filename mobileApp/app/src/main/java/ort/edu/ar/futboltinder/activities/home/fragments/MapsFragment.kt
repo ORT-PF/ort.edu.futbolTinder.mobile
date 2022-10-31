@@ -18,6 +18,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.maps.MapsActivity
 import ort.edu.ar.futboltinder.databinding.ActivityMapsBinding
+import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreationPostModel
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
 
 class MapsFragment : Fragment() {
@@ -88,6 +90,8 @@ class MapsFragment : Fragment() {
     ): View? {
         geoCoder = Geocoder(activity)
 
+        match = arguments?.getParcelable<MatchCreatorForm>("paramToMap")!!
+
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(MapsFragment.KEY_LOCATION)
             cameraPosition = savedInstanceState.getParcelable(MapsFragment.KEY_CAMERA_POSITION)
@@ -133,7 +137,16 @@ class MapsFragment : Fragment() {
                 val positionAddress = (geoCoder.getFromLocation(positionLatLng.latitude, positionLatLng.longitude,
                     MapsFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
-                val number = 0
+                val createdMatch =
+                    MatchCreationPostModel(
+                        match.fieldName!!,
+                        match.originalQuota,
+                        positionAddress?.getAddressLine(0)!!,
+                        positionLatLng.latitude,
+                        positionLatLng.longitude
+                    )
+                val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
+                vista.findNavController().navigate(action)
             }
         }
 
