@@ -50,8 +50,7 @@ class LoginFragment : Fragment() {
             var passwordInput = passwordText.text.toString()
             var userToAuthenticate = UserAuthenticationForm(userInput, passwordInput)
 
-            val intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
+            authenticate(userToAuthenticate)
         }
 
     }
