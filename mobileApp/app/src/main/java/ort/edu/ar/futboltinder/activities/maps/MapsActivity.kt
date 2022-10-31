@@ -3,11 +3,16 @@ package ort.edu.ar.futboltinder.activities.maps
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,10 +38,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
     private var lastKnownLocation: Location? = null
     private val defaultLocation = LatLng(-33.8523341, 151.2106085)
-
+    private lateinit var addressSearcher : EditText
+    private lateinit var searchAddressButton : ImageButton
+    private lateinit var mapActivityOkButton : Button
+    private var selectedMarker : Marker? = null
+    private lateinit var geoCoder : Geocoder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        geoCoder = Geocoder(this)
 
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION)
@@ -51,6 +62,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
+        addressSearcher = findViewById(R.id.mapActivitySearcher)
+        searchAddressButton = findViewById(R.id.mapActivityButton)
+        mapActivityOkButton = findViewById(R.id.mapActivityOkButton)
         mapFragment.getMapAsync(this)
 
     }
@@ -72,6 +86,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    override fun onStart() {
+        super.onStart()
+
+        searchAddressButton.setOnClickListener {
+            var addressToSearch = addressSearcher.text.toString()
+            findAddress(addressToSearch)
+        }
+
+        mapActivityOkButton.setOnClickListener {
+
+            if(selectedMarker == null){
+                Toast.makeText(this, "No se ha seleccionado ninguna ubicación", Toast.LENGTH_LONG).show()
+            } else{
+                val positionLatLng = selectedMarker!!.position
+                val positionAddress = (geoCoder.getFromLocation(positionLatLng.latitude, positionLatLng.longitude, ADDRESS_SEARCH_MAXIMUM_RESULTS)).firstOrNull()
+
+            }
+        }
+
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
@@ -84,6 +120,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
 
+        map.setOnMapClickListener(object : GoogleMap.OnMapClickListener{
+            override fun onMapClick(point: LatLng) {
+                map.clear()
+                selectedMarker = map.addMarker(MarkerOptions().position(point))
+            }
+        })
     }
 
     private fun getLocationPermission() {
@@ -170,18 +212,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    private fun findAddress(addressToSearch: String) {
+        val address = (geoCoder.getFromLocationName(addressToSearch,ADDRESS_SEARCH_MAXIMUM_RESULTS)).firstOrNull()
+        if(address == null){
+            Toast.makeText(this, "No se pudo localizar la dirección, por favor, ubicala manualmente en el mapa", Toast.LENGTH_LONG).show()
+        }
+        else{
+            map.clear()
+            val latLng = LatLng(address.latitude, address.longitude)
+            selectedMarker = map.addMarker(MarkerOptions().position(latLng))
+            map.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+        }
+    }
+
     companion object {
         //private val TAG = MapsActivityCurrentPlace::class.java.simpleName
         private const val DEFAULT_ZOOM = 15
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
+        private const val ADDRESS_SEARCH_MAXIMUM_RESULTS = 1
 
         // Keys for storing activity state.
         // [START maps_current_place_state_keys]
         private const val KEY_CAMERA_POSITION = "camera_position"
         private const val KEY_LOCATION = "location"
-        // [END maps_current_place_state_keys]
-
-        // Used for selecting the current place.
-        private const val M_MAX_ENTRIES = 5
     }
 }

@@ -49,7 +49,8 @@ class LoginFragment : Fragment() {
             var passwordInput = passwordText.text.toString()
             var userToAuthenticate = UserAuthenticationForm(userInput, passwordInput)
 
-            authenticate(userToAuthenticate)
+            val intent = Intent(activity, MapsActivity::class.java)
+            startActivity(intent)
         }
 
     }

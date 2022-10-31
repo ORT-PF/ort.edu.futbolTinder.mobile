@@ -18,7 +18,8 @@
     <string name="crear_partido">Crear Partido</string>
     <string name="action_settings">Settings</string>
     <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
-
+    <string name="mapActivityButtonText">Buscar</string>
+    <string name="mapActivityEditTextHint">Buscar dirección</string>
     <!-- -
     This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
     For more information, see https://support.google.com/admob/answer/3052638
