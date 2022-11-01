@@ -2,6 +2,7 @@ package ort.edu.ar.futboltinder.activities.home.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -31,8 +32,15 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreationPostModel
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
+import ort.edu.ar.futboltinder.domain.Match.Responses.MatchCreatorResponse
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilderHeroku
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchCreation.RetrofitMatchCreationService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MapsFragment : Fragment() {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -142,6 +150,9 @@ class MapsFragment : Fragment() {
                         positionLatLng.latitude,
                         positionLatLng.longitude
                     )
+
+                createMatch(createdMatch)
+
                 val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
                 vista.findNavController().navigate(action)
             }
@@ -259,5 +270,26 @@ class MapsFragment : Fragment() {
         // [START maps_current_place_state_keys]
         private const val KEY_CAMERA_POSITION = "camera_position"
         private const val KEY_LOCATION = "location"
+    }
+
+    private fun createMatch(matchCreatorForm : MatchCreationPostModel){
+        val retrofitClient = RetrofitClientBuilderHeroku.buildService(
+            RetrofitMatchCreationService::class.java
+        )
+        retrofitClient.createMatch(matchCreatorForm).enqueue(object :
+            Callback<MatchCreatorResponse> {
+            override fun onResponse(call: Call<MatchCreatorResponse>, response: Response<MatchCreatorResponse>){
+                if(response.isSuccessful){
+                    val intent = Intent(activity, HomeActivity::class.java)
+                    startActivity(intent)
+                    Toast.makeText(activity, response.code().toString(),Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<MatchCreatorResponse>, t: Throwable) {
+                Log.e("Example", t.message.toString() + t.stackTraceToString())
+                Toast.makeText(activity, t.cause.toString(), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
