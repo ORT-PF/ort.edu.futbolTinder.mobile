@@ -44,7 +44,7 @@
         tools:layout="@layout/fragment_match_detail2" >
         <argument
             android:name="match"
-            app:argType="ort.edu.ar.futboltinder.domain.Match.viewModels.Match" />
+            app:argType="ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
