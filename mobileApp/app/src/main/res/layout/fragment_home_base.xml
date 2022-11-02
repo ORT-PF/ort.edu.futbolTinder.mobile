@@ -14,9 +14,10 @@
             android:id="@+id/homeTextView"
             android:layout_width="260dp"
             android:layout_height="50dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-black"
             android:text="@string/homeLoginBaseText"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +30,7 @@
             android:id="@+id/homeLoginButton"
             android:layout_width="245dp"
             android:layout_height="64dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:text="@string/homeLoginButtonText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.451"
@@ -46,6 +47,6 @@
             app:layout_constraintHorizontal_bias="0.451"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/homeLoginButton"
-            app:layout_constraintVertical_bias="0.329" />
+            app:layout_constraintVertical_bias="0.164" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
