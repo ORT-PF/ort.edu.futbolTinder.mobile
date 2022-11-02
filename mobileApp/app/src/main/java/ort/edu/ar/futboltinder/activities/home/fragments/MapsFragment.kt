@@ -153,8 +153,6 @@ class MapsFragment : Fragment() {
 
                 createMatch(createdMatch)
 
-                val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
-                vista.findNavController().navigate(action)
             }
         }
 
@@ -280,9 +278,8 @@ class MapsFragment : Fragment() {
             Callback<MatchCreatorResponse> {
             override fun onResponse(call: Call<MatchCreatorResponse>, response: Response<MatchCreatorResponse>){
                 if(response.isSuccessful){
-                    val intent = Intent(activity, HomeActivity::class.java)
-                    startActivity(intent)
-                    Toast.makeText(activity, response.code().toString(),Toast.LENGTH_SHORT).show()
+                    val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
+                    vista.findNavController().navigate(action)
                 }
             }
 
