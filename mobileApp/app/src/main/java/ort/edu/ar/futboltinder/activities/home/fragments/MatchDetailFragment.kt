@@ -28,13 +28,13 @@ class MatchDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val matchName = view.findViewById<TextView>(R.id.textViewName)
-        matchName.text = "Nombre: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.name
+        matchName.text = "Nombre: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.fieldName
 
         val matchAdress = view.findViewById<TextView>(R.id.textViewAdress)
-        matchAdress.text = "Direccion: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.address
+        matchAdress.text = "Direccion: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.fieldAddress
 
         val matchQuotaNumber = view.findViewById<TextView>(R.id.textViewQuotaNumber)
-        matchQuotaNumber.text = "Jugadores: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.quotaNumber.toString()
+        matchQuotaNumber.text = "Jugadores: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.originalQuota.toString()
     }
 
 }
