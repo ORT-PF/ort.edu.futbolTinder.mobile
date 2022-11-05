@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.Toast
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
+import ort.edu.ar.futboltinder.domain.Dal.models.LoggedUser
+import ort.edu.ar.futboltinder.domain.Dal.repository.AppRepository
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
 import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
@@ -25,6 +27,7 @@ class LoginFragment : Fragment() {
     lateinit var userText : EditText
     lateinit var passwordText : EditText
     lateinit var loginButton : Button
+    private lateinit var appRepository: AppRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,8 @@ class LoginFragment : Fragment() {
     override fun onStart(){
         super.onStart()
 
+        appRepository = AppRepository.getInstance(requireContext())
+
         loginButton.setOnClickListener {
             var userInput = userText.text.toString()
             var passwordInput = passwordText.text.toString()
@@ -62,7 +67,11 @@ class LoginFragment : Fragment() {
             Callback<UserAuthenticationResponse> {
             override fun onResponse(call: Call<UserAuthenticationResponse>, response: Response<UserAuthenticationResponse>){
                 if(response.isSuccessful){
+                    var authenticatedUser = response.body()
+                    val userId = checkIfUserAlreadyRegistered(authenticatedUser)
+
                     val intent = Intent(activity, HomeActivity::class.java)
+                    intent.putExtra("userId", userId)
                     startActivity(intent)
                 }
             }
@@ -72,5 +81,17 @@ class LoginFragment : Fragment() {
                 Toast.makeText(activity, "Ha ocurrido un error. Por favor intente más tarde", Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun checkIfUserAlreadyRegistered(authenticatedUser: UserAuthenticationResponse?) : Long?{
+        val user = appRepository.getUserById(authenticatedUser?.userId!!.toInt())
+        var userId : Long? = null
+        if(user == null){
+            userId = appRepository.addUser(LoggedUser(authenticatedUser?.userId!!.toInt(), authenticatedUser?.userName, authenticatedUser?.token))
+        }
+        else{
+            userId = authenticatedUser?.userId!!.toLong()
+        }
+        return userId
     }
 }
