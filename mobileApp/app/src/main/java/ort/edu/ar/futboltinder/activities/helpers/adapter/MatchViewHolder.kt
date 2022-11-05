@@ -10,11 +10,14 @@ import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
 
 class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val titleText: TextView = itemView.findViewById(R.id.item_title)
+    private val titleText:         TextView = itemView.findViewById(R.id.textViewName)
+    private val titleFieldAddress: TextView = itemView.findViewById(R.id.textViewFieldAddress)
+    private val titlePlayers:      TextView = itemView.findViewById(R.id.textViewPlayers)
 
     fun bind(match : MatchListResponse) {
 
-        titleText.text = match.fieldName
-
+        titleText.text    = match.fieldName
+        titleFieldAddress.text = match.fieldAddress
+        titlePlayers.text = match.originalQuota
     }
 }

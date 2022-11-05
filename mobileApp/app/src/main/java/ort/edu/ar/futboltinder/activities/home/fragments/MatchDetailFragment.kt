@@ -47,6 +47,7 @@ class MatchDetailFragment : Fragment() {
             val actionBack =
             MatchDetailFragmentDirections.actionMatchDetailFragmentToMatchListFragment()
             view.findNavController().navigate((actionBack))
+            // Luego reemplazamos por funcioanalidad real para unirse
         }
 
     }
