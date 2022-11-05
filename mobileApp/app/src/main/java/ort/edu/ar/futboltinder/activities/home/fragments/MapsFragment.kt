@@ -142,13 +142,19 @@ class MapsFragment : Fragment() {
                 val positionAddress = (geoCoder.getFromLocation(positionLatLng.latitude, positionLatLng.longitude,
                     MapsFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
+
+                val dateTime : String = "2022-11-05T14:14:14.224Z"  //Reemplazar con DatePicker
+                val hostId   : String = "99"                        //Reemplazar con HostID real
+
                 val createdMatch =
                     MatchCreationPostModel(
                         match.fieldName!!,
                         match.originalQuota,
                         positionAddress?.getAddressLine(0)!!,
                         positionLatLng.latitude,
-                        positionLatLng.longitude
+                        positionLatLng.longitude,
+                        dateTime,
+                        hostId
                     )
 
                 createMatch(createdMatch)
@@ -274,19 +280,15 @@ class MapsFragment : Fragment() {
         val retrofitClient = RetrofitClientBuilderHeroku.buildService(
             RetrofitMatchCreationService::class.java
         )
-        retrofitClient.createMatch(matchCreatorForm).enqueue(object :
-            Callback<MatchCreatorResponse> {
-            override fun onResponse(call: Call<MatchCreatorResponse>, response: Response<MatchCreatorResponse>){
-                if(response.isSuccessful){
-                    val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
-                    vista.findNavController().navigate(action)
-                }
-            }
+       retrofitClient.createMatch(matchCreatorForm).enqueue( object : Callback<Int> {
+           override fun onResponse(call: Call<Int>, response: Response<Int>) {
+               val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
+               vista.findNavController().navigate(action)
+           }
 
-            override fun onFailure(call: Call<MatchCreatorResponse>, t: Throwable) {
-                Log.e("Example", t.message.toString() + t.stackTraceToString())
-                Toast.makeText(activity, t.cause.toString(), Toast.LENGTH_SHORT).show()
-            }
-        })
+           override fun onFailure(call: Call<Int>, t: Throwable) {
+               TODO("Not yet implemented")
+           }
+       })
     }
 }
