@@ -12,7 +12,7 @@ import retrofit2.Callback
 
 class MatchAdapter(
     private val matchList: List<MatchListResponse>,
-    private val onMatchClickedListener: Callback<List<MatchListResponse>>
+    private val onMatchClickedListener: OnMatchClickedListener
     ) : RecyclerView.Adapter<MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
@@ -25,7 +25,7 @@ class MatchAdapter(
         val match = matchList[position]
         holder.bind(match)
 
-        //holder.itemView.setOnClickListener { onMatchClickedListener.onMatchSelected(match) }
+        holder.itemView.setOnClickListener { onMatchClickedListener.onMatchSelected(match) }
 
     }
 
