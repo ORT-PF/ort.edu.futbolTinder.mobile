@@ -18,6 +18,6 @@ class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         titleText.text    = match.fieldName
         titleFieldAddress.text = match.fieldAddress
-        titlePlayers.text = match.originalQuota
+        titlePlayers.text = match.originalQuota.toString()
     }
 }

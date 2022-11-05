@@ -3,7 +3,7 @@ package ort.edu.ar.futboltinder.domain.Match.Responses
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class MatchListResponse(val fieldName: String?,val fieldAddress: String,val originalQuota: String, val longitude: Double, val latitude: Double) : Serializable
+data class MatchListResponse(val hostId: Int, val fieldName: String?,val fieldAddress: String,val dateTime: String, val originalQuota: Int, val remainingQuota: Int, val longitude: Double, val latitude: Double) : Serializable
 
 /*
 class MatchListResponse (
