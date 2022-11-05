@@ -44,7 +44,10 @@
         tools:layout="@layout/fragment_match_detail2" >
         <argument
             android:name="match"
-            app:argType="ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm" />
+            app:argType="ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse" />
+        <action
+            android:id="@+id/action_matchDetailFragment_to_matchListFragment"
+            app:destination="@id/matchListFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
