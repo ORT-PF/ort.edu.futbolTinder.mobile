@@ -2,7 +2,6 @@ package ort.edu.ar.futboltinder.activities.home.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -35,7 +34,6 @@ import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreationPostModel
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
-import ort.edu.ar.futboltinder.domain.Match.Responses.MatchCreatorResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilderHeroku
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchCreation.RetrofitMatchCreationService
 import retrofit2.Call
