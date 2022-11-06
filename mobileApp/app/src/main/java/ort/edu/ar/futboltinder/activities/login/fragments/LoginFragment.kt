@@ -71,7 +71,7 @@ class LoginFragment : Fragment() {
                     val userId = checkIfUserAlreadyRegistered(authenticatedUser)
 
                     val intent = Intent(activity, HomeActivity::class.java)
-                    intent.putExtra("userId", userId)
+                    intent.putExtra(getString(R.string.USER_ID_PARAM_NAME), userId)
                     startActivity(intent)
                 }
             }

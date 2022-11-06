@@ -43,6 +43,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MapsFragment : Fragment() {
+
+    private var userId = HomeActivity.getCurrentUserId()
+
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private var locationPermissionGranted = false
     private var cameraPosition: CameraPosition? = null
@@ -143,8 +146,7 @@ class MapsFragment : Fragment() {
                     MapsFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
 
-                val dateTime : String = "2022-11-05T14:14:14.224Z"  //Reemplazar con DatePicker
-                val hostId   : String = "99"                        //Reemplazar con HostID real
+                val dateTime : String = "2022-11-05T14:14:14.224Z"
 
                 val createdMatch =
                     MatchCreationPostModel(
@@ -154,7 +156,7 @@ class MapsFragment : Fragment() {
                         positionLatLng.latitude,
                         positionLatLng.longitude,
                         dateTime,
-                        hostId
+                        userId.toString()
                     )
 
                 createMatch(createdMatch)

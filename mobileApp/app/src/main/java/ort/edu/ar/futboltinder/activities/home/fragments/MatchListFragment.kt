@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchAdapter
 import ort.edu.ar.futboltinder.activities.helpers.listener.OnMatchClickedListener
+import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilderHeroku
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchList.RetrofitMatchCreationList
@@ -19,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MatchListFragment : Fragment(), OnMatchClickedListener {
+    private var userId = HomeActivity.getCurrentUserId()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
