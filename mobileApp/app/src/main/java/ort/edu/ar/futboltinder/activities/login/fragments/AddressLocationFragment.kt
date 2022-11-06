@@ -2,6 +2,7 @@ package ort.edu.ar.futboltinder.activities.home.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -53,7 +54,6 @@ class AddressLocationFragment : Fragment() {
     private lateinit var mapActivityOkButton : Button
     private var selectedMarker : Marker? = null
     private lateinit var geoCoder : Geocoder
-    private lateinit var match: MatchCreatorForm
     private lateinit var vista : View
     private var userId : Long? = null
 
@@ -83,7 +83,6 @@ class AddressLocationFragment : Fragment() {
             override fun onMapClick(point: LatLng) {
                 map.clear()
                 selectedMarker = map.addMarker(MarkerOptions().position(point))
-                var number = 0
             }
         })
     }
@@ -95,17 +94,13 @@ class AddressLocationFragment : Fragment() {
     ): View? {
         geoCoder = Geocoder(activity)
 
-        match = arguments?.getParcelable<MatchCreatorForm>("paramToMap")!!
-
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(AddressLocationFragment.KEY_LOCATION)
             cameraPosition = savedInstanceState.getParcelable(AddressLocationFragment.KEY_CAMERA_POSITION)
         }
 
-        userId = arguments?.getLong("userId")
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        vista = inflater.inflate(R.layout.fragment_maps, container, false)
+        vista = inflater.inflate(R.layout.fragment_address_location, container, false)
         addressSearcher = vista.findViewById(R.id.addressMapActivitySearcher)
         searchAddressButton = vista.findViewById(R.id.addressMapActivityButton)
         mapActivityOkButton = vista.findViewById(R.id.addressMapActivityOkButton)
@@ -115,7 +110,7 @@ class AddressLocationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        val mapFragment = childFragmentManager.findFragmentById(R.id.addressMap) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
 
@@ -138,29 +133,18 @@ class AddressLocationFragment : Fragment() {
         mapActivityOkButton.setOnClickListener {
 
             if(selectedMarker == null){
-                Toast.makeText(activity, "No se ha seleccionado ninguna ubicación", Toast.LENGTH_LONG).show()
+                val position = LatLng(lastKnownLocation!!.latitude, lastKnownLocation!!.longitude)
+                HomeActivity.setUserCurrentLocation(position)
             } else{
                 val positionLatLng = selectedMarker!!.position
+                HomeActivity.setUserCurrentLocation(positionLatLng)
                 val positionAddress = (geoCoder.getFromLocation(positionLatLng.latitude, positionLatLng.longitude,
                     AddressLocationFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
-
-                val dateTime : String = "2022-11-05T14:14:14.224Z"
-
-                val createdMatch =
-                    MatchCreationPostModel(
-                        match.fieldName!!,
-                        match.originalQuota,
-                        positionAddress?.getAddressLine(0)!!,
-                        positionLatLng.latitude,
-                        positionLatLng.longitude,
-                        dateTime,
-                        userId.toString()
-                    )
-
-                createMatch(createdMatch)
-
             }
+            val intent = Intent(activity, HomeActivity::class.java)
+            intent.putExtra(getString(R.string.USER_ID_PARAM_NAME), userId)
+            startActivity(intent)
         }
 
     }

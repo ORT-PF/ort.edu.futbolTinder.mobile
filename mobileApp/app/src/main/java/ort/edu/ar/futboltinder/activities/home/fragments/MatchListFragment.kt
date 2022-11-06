@@ -66,7 +66,7 @@ class MatchListFragment : Fragment(), OnMatchClickedListener {
             RetrofitClientBuilderHeroku.buildService(RetrofitMatchesByDistanceAndUser::class.java)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-        val location = lastKnownLocation
+        val location = HomeActivity.getUserCurrentLocation()
         if (location != null) {
             retrofitClient.getMatches(location.latitude, location.longitude, userId!!).enqueue(object : Callback<List<MatchListResponse>> {
                 override fun onResponse(

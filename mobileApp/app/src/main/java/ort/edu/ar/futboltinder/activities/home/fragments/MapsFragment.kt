@@ -84,7 +84,6 @@ class MapsFragment : Fragment() {
             override fun onMapClick(point: LatLng) {
                 map.clear()
                 selectedMarker = map.addMarker(MarkerOptions().position(point))
-                var number = 0
             }
         })
     }

@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Dal.models.LoggedUser
@@ -70,9 +72,8 @@ class LoginFragment : Fragment() {
                     var authenticatedUser = response.body()
                     val userId = checkIfUserAlreadyRegistered(authenticatedUser)
 
-                    val intent = Intent(activity, HomeActivity::class.java)
-                    intent.putExtra(getString(R.string.USER_ID_PARAM_NAME), userId)
-                    startActivity(intent)
+                    val action = LoginFragmentDirections.actionLoginFragmentToAddressLocationFragment(userId!!.toInt())
+                    vista.findNavController().navigate(action)
                 }
             }
 
