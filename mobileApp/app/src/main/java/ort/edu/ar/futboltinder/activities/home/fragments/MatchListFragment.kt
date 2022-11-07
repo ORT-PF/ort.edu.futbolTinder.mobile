@@ -36,9 +36,6 @@ import retrofit2.Response
 
 class MatchListFragment : Fragment(), OnMatchClickedListener {
     private var userId = HomeActivity.getCurrentUserId()
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var locationPermissionGranted = false
-    private var lastKnownLocation: Location? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,13 +45,6 @@ class MatchListFragment : Fragment(), OnMatchClickedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (savedInstanceState != null) {
-            lastKnownLocation = savedInstanceState.getParcelable(MatchListFragment.KEY_LOCATION)
-        }
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        requestLocationUpdate()
-        getCurrentLocation()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_match_list, container, false)
     }
@@ -92,68 +82,6 @@ class MatchListFragment : Fragment(), OnMatchClickedListener {
         }
         else{
             Toast.makeText(requireContext(), "Por favor, habilitá la ubicación en tu dispositivo", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    fun getCurrentLocation() {
-            /*
-             * Get the best and most recent location of the device, which may be null in rare
-             * cases when a location is not available.
-             */
-            try {
-                if (locationPermissionGranted) {
-                    val locationResult = fusedLocationClient.lastLocation
-                    /*locationResult.addOnCompleteListener(requireActivity()) { task ->
-                        if (task.isSuccessful) {
-                            // Set the map's camera position to the current location of the device.
-                            lastKnownLocation = task.result
-
-                        }
-                    }*/
-                    locationResult.addOnSuccessListener { location : Location? ->
-                        lastKnownLocation = location
-                    }
-
-                }
-            } catch (e: SecurityException) {
-                Log.e("Exception: %s", e.message, e)
-            }
-    }
-
-    @SuppressLint("MissingPermission")
-    fun requestLocationUpdate(){
-        getLocationPermission()
-        val mLocationRequest = LocationRequest()
-        mLocationRequest.interval = 60000
-        mLocationRequest.fastestInterval = 5000
-        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        val mLocationCallback: LocationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                if (locationResult == null) {
-                    return
-                }
-                for (location in locationResult.locations) {
-                    if (location != null) {
-                        //TODO: UI updates.
-                    }
-                }
-            }
-        }
-        LocationServices.getFusedLocationProviderClient(requireContext())
-            .requestLocationUpdates(mLocationRequest, mLocationCallback, null)
-    }
-
-    private fun getLocationPermission() {
-
-        if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED) {
-            locationPermissionGranted = true
-        } else {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                MatchListFragment.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
-            )
         }
     }
 

@@ -99,6 +99,7 @@ class AddressLocationFragment : Fragment() {
             cameraPosition = savedInstanceState.getParcelable(AddressLocationFragment.KEY_CAMERA_POSITION)
         }
 
+        userId = arguments?.getLong("userId")
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         vista = inflater.inflate(R.layout.fragment_address_location, container, false)
         addressSearcher = vista.findViewById(R.id.addressMapActivitySearcher)
@@ -259,21 +260,5 @@ class AddressLocationFragment : Fragment() {
         // [START maps_current_place_state_keys]
         private const val KEY_CAMERA_POSITION = "camera_position"
         private const val KEY_LOCATION = "location"
-    }
-
-    private fun createMatch(matchCreatorForm : MatchCreationPostModel){
-        val retrofitClient = RetrofitClientBuilderHeroku.buildService(
-            RetrofitMatchCreationService::class.java
-        )
-        retrofitClient.createMatch(matchCreatorForm).enqueue( object : Callback<Int> {
-            override fun onResponse(call: Call<Int>, response: Response<Int>) {
-                val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
-                vista.findNavController().navigate(action)
-            }
-
-            override fun onFailure(call: Call<Int>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
     }
 }

@@ -41,6 +41,6 @@
         android:label="AddressLocationFragment" >
         <argument
             android:name="userId"
-            app:argType="integer" />
+            app:argType="long" />
     </fragment>
 </navigation>
