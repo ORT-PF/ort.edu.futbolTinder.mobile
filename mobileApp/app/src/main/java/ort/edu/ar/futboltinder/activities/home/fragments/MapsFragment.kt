@@ -151,8 +151,8 @@ class MapsFragment : Fragment() {
                         match.fieldName!!,
                         match.originalQuota,
                         positionAddress?.getAddressLine(0)!!,
-                        positionLatLng.latitude,
                         positionLatLng.longitude,
+                        positionLatLng.latitude,
                         formattedDateTime,
                         userId.toString()
                     )

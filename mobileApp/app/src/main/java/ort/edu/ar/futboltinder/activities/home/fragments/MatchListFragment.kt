@@ -54,8 +54,7 @@ class MatchListFragment : Fragment(), OnMatchClickedListener {
 
         val location = HomeActivity.getUserCurrentLocation()
         if (location != null) {
-            //TODO: Latitud y longitud están invertidos al pasar los parámetros hasta que se solucione el tema de la api. Una vez resuelto, hay que invertirlos
-            retrofitClient.getMatches(location.longitude, location.latitude, userId!!).enqueue(object : Callback<List<MatchListResponse>> {
+            retrofitClient.getMatches( location.latitude, location.longitude, userId!!).enqueue(object : Callback<List<MatchListResponse>> {
                 override fun onResponse(
                     call: Call<List<MatchListResponse>>,
                     response: Response<List<MatchListResponse>>
