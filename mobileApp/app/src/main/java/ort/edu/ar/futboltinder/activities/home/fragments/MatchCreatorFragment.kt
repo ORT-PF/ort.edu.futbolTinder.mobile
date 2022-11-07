@@ -48,10 +48,7 @@ class MatchCreatorFragment : Fragment() {
                     null,
                     null
                 )
-                //matchCreatorService.register(matchCreatorForm)
-                /*val intent = Intent(activity, MapsActivity::class.java)
-                intent.putExtra("match", matchCreatorForm)
-                startActivity(intent)*/
+
                 val action =
                     MatchCreatorFragmentDirections.actionMatchCreatorFragmentToMapsFragment(matchCreatorForm)
                 vista.findNavController().navigate(action)

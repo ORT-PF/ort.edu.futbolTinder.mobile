@@ -6,5 +6,4 @@ class UserRegistrationForm (
         @SerializedName("name") var name : String,
         @SerializedName("email") var email : String,
         @SerializedName("password") var password : String
-        ){
-}
+        )

@@ -15,10 +15,6 @@ import ort.edu.ar.futboltinder.activities.home.HomeActivity
 class MatchDetailFragment : Fragment() {
     private var userId = HomeActivity.getCurrentUserId()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

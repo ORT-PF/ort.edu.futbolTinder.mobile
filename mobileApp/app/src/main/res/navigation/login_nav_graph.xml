@@ -9,7 +9,11 @@
         android:id="@+id/loginFragment"
         android:name="ort.edu.ar.futboltinder.activities.login.fragments.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_addressLocationFragment"
+            app:destination="@id/addressLocationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeBaseFragment"
         android:name="ort.edu.ar.futboltinder.activities.login.fragments.HomeBaseFragment"
@@ -30,5 +34,13 @@
         <action
             android:id="@+id/action_registrationFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressLocationFragment"
+        android:name="ort.edu.ar.futboltinder.activities.home.fragments.AddressLocationFragment"
+        android:label="AddressLocationFragment" >
+        <argument
+            android:name="userId"
+            app:argType="long" />
     </fragment>
 </navigation>

@@ -13,6 +13,5 @@ import retrofit2.http.POST
 interface RetrofitRegistrationService {
 
     @POST("/api/users")
-    //fun authenticateUser(@Url url : String, @Body userData : UserAuthenticationForm ): Call<UserAuthenticationResponse>
     fun registerUser( @Body userData : UserRegistrationForm) : Call<UserRegistrationResponse>
 }

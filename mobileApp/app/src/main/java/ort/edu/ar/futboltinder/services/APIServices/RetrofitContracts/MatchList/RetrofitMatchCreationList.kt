@@ -13,7 +13,5 @@ import retrofit2.http.*
 interface RetrofitMatchCreationList {
 
     @GET("/partidos/getAll")
-    //fun authenticateUser(@Url url : String, @Body userData : UserAuthenticationForm ): Call<UserAuthenticationResponse>
-    //fun authenticateUser( @Body userData : UserAuthenticationForm ): Call<UserAuthenticationResponse>
     fun getMatches (): Call<List<MatchListResponse>>
 }

@@ -10,6 +10,5 @@ class MatchCreatorResponse (
     @SerializedName("longitude") var longitude : Double?,
     @SerializedName("latitude") var latitude : Double?
    // @SerializedName("date") var date : String*/
-){
-}
+)
 
