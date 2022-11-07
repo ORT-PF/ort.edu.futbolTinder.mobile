@@ -15,11 +15,6 @@ class SuccessFragment : Fragment() {
     lateinit var vista : View
     lateinit var backButton : Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +29,7 @@ class SuccessFragment : Fragment() {
     override fun onStart(){
         super.onStart()
 
-        backButton.setOnClickListener(){
+        backButton.setOnClickListener {
             val action = SuccessFragmentDirections.actionSuccessFragmentToMatchBaseFragment()
             vista.findNavController().navigate(action)
 

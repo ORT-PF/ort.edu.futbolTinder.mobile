@@ -31,10 +31,6 @@ class LoginFragment : Fragment() {
     lateinit var loginButton : Button
     private lateinit var appRepository: AppRepository
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,10 +84,14 @@ class LoginFragment : Fragment() {
         val user = appRepository.getUserById(authenticatedUser?.userId!!.toInt())
         var userId : Long? = null
         if(user == null){
-            userId = appRepository.addUser(LoggedUser(authenticatedUser?.userId!!.toInt(), authenticatedUser?.userName, authenticatedUser?.token))
+            userId = appRepository.addUser(LoggedUser(
+                authenticatedUser.userId.toInt(),
+                authenticatedUser.userName,
+                authenticatedUser.token
+            ))
         }
         else{
-            userId = authenticatedUser?.userId!!.toLong()
+            userId = authenticatedUser.userId.toLong()
         }
         return userId
     }

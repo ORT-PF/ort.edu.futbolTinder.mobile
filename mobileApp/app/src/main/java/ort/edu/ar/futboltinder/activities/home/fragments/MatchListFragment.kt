@@ -37,10 +37,6 @@ import retrofit2.Response
 class MatchListFragment : Fragment(), OnMatchClickedListener {
     private var userId = HomeActivity.getCurrentUserId()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,7 +54,8 @@ class MatchListFragment : Fragment(), OnMatchClickedListener {
 
         val location = HomeActivity.getUserCurrentLocation()
         if (location != null) {
-            retrofitClient.getMatches(location.latitude, location.longitude, userId!!).enqueue(object : Callback<List<MatchListResponse>> {
+            //TODO: Latitud y longitud están invertidos al pasar los parámetros hasta que se solucione el tema de la api. Una vez resuelto, hay que invertirlos
+            retrofitClient.getMatches(location.longitude, location.latitude, userId!!).enqueue(object : Callback<List<MatchListResponse>> {
                 override fun onResponse(
                     call: Call<List<MatchListResponse>>,
                     response: Response<List<MatchListResponse>>
@@ -72,32 +69,21 @@ class MatchListFragment : Fragment(), OnMatchClickedListener {
                     }
                     else{
                         Log.e("APIERROR", response.message())
+                        Toast.makeText(context, getString(R.string.api_error), Toast.LENGTH_LONG)
                     }
                 }
 
                 override fun onFailure(call: Call<List<MatchListResponse>>, t: Throwable) {
-                TODO("Not yet implemented")
+                    Toast.makeText(context, getString(R.string.api_error), Toast.LENGTH_LONG)
                 }
             })
         }
         else{
-            Toast.makeText(requireContext(), "Por favor, habilitá la ubicación en tu dispositivo", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), getString(R.string.location_message), Toast.LENGTH_LONG).show()
         }
     }
 
     override fun onMatchSelected(match: MatchListResponse) {
         findNavController().navigate(MatchListFragmentDirections.actionMatchListFragmentToMatchDetailFragment(match))
-    }
-
-
-    companion object{
-        private const val DEFAULT_ZOOM = 15
-        private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
-        private const val ADDRESS_SEARCH_MAXIMUM_RESULTS = 1
-
-        // Keys for storing activity state.
-        // [START maps_current_place_state_keys]
-        private const val KEY_CAMERA_POSITION = "camera_position"
-        private const val KEY_LOCATION = "location"
     }
 }

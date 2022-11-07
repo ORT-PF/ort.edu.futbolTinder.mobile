@@ -17,8 +17,7 @@ data class MatchCreatorForm(
         parcel.readString(),
         parcel.readDouble(),
         parcel.readDouble()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(fieldName)

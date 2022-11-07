@@ -21,8 +21,7 @@ class HomeActivity : AppCompatActivity() {
         userId = intent.getLongExtra(getString(R.string.USER_ID_PARAM_NAME), 10000)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
 
-        HomeActivity.setLoggedUserId(userId!!)
-        val loc = HomeActivity.getUserCurrentLocation()
+        setLoggedUserId(userId!!)
 
         bottomNavView = findViewById(R.id.bottomAppBar2)
 

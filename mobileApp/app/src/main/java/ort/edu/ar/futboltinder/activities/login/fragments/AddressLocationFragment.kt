@@ -116,7 +116,7 @@ class AddressLocationFragment : Fragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        map?.let { map ->
+        map.let { map ->
             outState.putParcelable(AddressLocationFragment.KEY_CAMERA_POSITION, map.cameraPosition)
             outState.putParcelable(AddressLocationFragment.KEY_LOCATION, lastKnownLocation)
         }
@@ -175,11 +175,11 @@ class AddressLocationFragment : Fragment() {
         }
         try {
             if (locationPermissionGranted) {
-                map?.isMyLocationEnabled = true
-                map?.uiSettings?.isMyLocationButtonEnabled = true
+                map.isMyLocationEnabled = true
+                map.uiSettings.isMyLocationButtonEnabled = true
             } else {
-                map?.isMyLocationEnabled = false
-                map?.uiSettings?.isMyLocationButtonEnabled = false
+                map.isMyLocationEnabled = false
+                map.uiSettings.isMyLocationButtonEnabled = false
                 lastKnownLocation = null
                 getLocationPermission()
             }
@@ -202,14 +202,14 @@ class AddressLocationFragment : Fragment() {
                         // Set the map's camera position to the current location of the device.
                         lastKnownLocation = task.result
                         if (lastKnownLocation != null) {
-                            map?.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                 LatLng(lastKnownLocation!!.latitude,
                                     lastKnownLocation!!.longitude), AddressLocationFragment.DEFAULT_ZOOM.toFloat()))
                         }
                     } else {
-                        map?.moveCamera(CameraUpdateFactory
+                        map.moveCamera(CameraUpdateFactory
                             .newLatLngZoom(defaultLocation, AddressLocationFragment.DEFAULT_ZOOM.toFloat()))
-                        map?.uiSettings?.isMyLocationButtonEnabled = false
+                        map.uiSettings.isMyLocationButtonEnabled = false
                     }
                 }
             }
