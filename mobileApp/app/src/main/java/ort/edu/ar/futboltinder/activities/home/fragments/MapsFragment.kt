@@ -37,10 +37,8 @@ import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchCreat
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class MapsFragment : Fragment() {
 
@@ -145,7 +143,8 @@ class MapsFragment : Fragment() {
                     MapsFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
 
-                val dateTime : String = "2022-11-07T14:14:14.224Z"
+                //TODO: Remover esta llamada cuando esté implementado el datepicker
+                val formattedDateTime = getFormattedTodayDatePlusOneDay()
 
                 val createdMatch =
                     MatchCreationPostModel(
@@ -154,7 +153,7 @@ class MapsFragment : Fragment() {
                         positionAddress?.getAddressLine(0)!!,
                         positionLatLng.latitude,
                         positionLatLng.longitude,
-                        dateTime,
+                        formattedDateTime,
                         userId.toString()
                     )
 
@@ -293,8 +292,21 @@ class MapsFragment : Fragment() {
            }
 
            override fun onFailure(call: Call<Int>, t: Throwable) {
-               TODO("Not yet implemented")
+               Toast.makeText(context, getString(R.string.api_error),Toast.LENGTH_LONG)
            }
        })
+    }
+
+    private fun getFormattedTodayDatePlusOneDay() : String{
+        val tomorrowDateTime = LocalDateTime.now().plusDays(1)
+        return formatDateTimeToApiFormat(tomorrowDateTime)
+    }
+
+    private fun formatDateTimeToApiFormat(date : LocalDateTime) : String{
+        val dateString = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).replace("\\s+".toRegex(), "T")
+        val sb = StringBuilder()
+        sb.append(dateString)
+        sb.append("Z")
+        return sb.toString()
     }
 }
