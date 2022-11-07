@@ -11,9 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchAdapter
 import ort.edu.ar.futboltinder.activities.helpers.listener.OnMatchClickedListener
-import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
+import ort.edu.ar.futboltinder.activities.home.HomeActivity
+import ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilderHeroku
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchList.RetrofitMatchCreationList
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MatchListFragment : Fragment(), OnMatchClickedListener {
+    private var userId = HomeActivity.getCurrentUserId()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,29 +37,40 @@ class MatchListFragment : Fragment(), OnMatchClickedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Ahora hardcodeamos los partidos luego usaremos una API.
-        val match1 = Match("Partido1","Picheuta 1234", 10)
-        val match2 = Match("Partido2","San Juan 3478", 10)
-        val match3 = Match("Partido3","Rojas 4137", 10)
-        val match4 = Match("Partido4","Drumond 2103", 10)
-        val match5 = Match("Partido5","Bolivar 255", 10)
-
-        //Agrego los partidos a una lista.
-        val matches = listOf<Match>(match1,match2,match3,match4,match5)
-
+        val retrofitClient = RetrofitClientBuilderHeroku.buildService(RetrofitMatchCreationList::class.java)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = MatchAdapter(matches,this)
-        recyclerView.layoutManager =LinearLayoutManager(context)
-        recyclerView.adapter = adapter
 
-    }
+        retrofitClient.getMatches().enqueue(object : Callback<List<MatchListResponse>> {
+            override fun onResponse(
+                call: Call<List<MatchListResponse>>,
+                response: Response<List<MatchListResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    val matchesList = response.body()
+
+                    val adapter = matchesList?.let { MatchAdapter(it,this@MatchListFragment) }
+                    recyclerView.layoutManager =LinearLayoutManager(context)
+                    recyclerView.adapter = adapter
+                }
+            }
+
+            override fun onFailure(call: Call<List<MatchListResponse>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        }
+
 
 
     override fun onStart(){
         super.onStart()
     }
 
-    override fun onMatchSelected(match: Match) {
+
+
+    override fun onMatchSelected(match: MatchListResponse) {
         findNavController().navigate(MatchListFragmentDirections.actionMatchListFragmentToMatchDetailFragment(match))
     }
 }

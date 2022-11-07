@@ -36,6 +36,7 @@ class MatchCreatorFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         matchCreateButton.setOnClickListener {
             var isValidContext = validateContext()
 

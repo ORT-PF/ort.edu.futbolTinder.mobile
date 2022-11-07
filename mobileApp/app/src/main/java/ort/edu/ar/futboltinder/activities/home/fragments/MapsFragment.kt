@@ -2,6 +2,7 @@ package ort.edu.ar.futboltinder.activities.home.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
@@ -31,10 +32,20 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreationPostModel
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
+import ort.edu.ar.futboltinder.domain.Match.Responses.MatchCreatorResponse
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilderHeroku
+import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchCreation.RetrofitMatchCreationService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MapsFragment : Fragment() {
+
+    private var userId = HomeActivity.getCurrentUserId()
+
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private var locationPermissionGranted = false
     private var cameraPosition: CameraPosition? = null
@@ -134,16 +145,22 @@ class MapsFragment : Fragment() {
                 val positionAddress = (geoCoder.getFromLocation(positionLatLng.latitude, positionLatLng.longitude,
                     MapsFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
+
+                val dateTime : String = "2022-11-05T14:14:14.224Z"
+
                 val createdMatch =
                     MatchCreationPostModel(
                         match.fieldName!!,
                         match.originalQuota,
                         positionAddress?.getAddressLine(0)!!,
                         positionLatLng.latitude,
-                        positionLatLng.longitude
+                        positionLatLng.longitude,
+                        dateTime,
+                        userId.toString()
                     )
-                val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
-                vista.findNavController().navigate(action)
+
+                createMatch(createdMatch)
+
             }
         }
 
@@ -259,5 +276,21 @@ class MapsFragment : Fragment() {
         // [START maps_current_place_state_keys]
         private const val KEY_CAMERA_POSITION = "camera_position"
         private const val KEY_LOCATION = "location"
+    }
+
+    private fun createMatch(matchCreatorForm : MatchCreationPostModel){
+        val retrofitClient = RetrofitClientBuilderHeroku.buildService(
+            RetrofitMatchCreationService::class.java
+        )
+       retrofitClient.createMatch(matchCreatorForm).enqueue( object : Callback<Int> {
+           override fun onResponse(call: Call<Int>, response: Response<Int>) {
+               val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
+               vista.findNavController().navigate(action)
+           }
+
+           override fun onFailure(call: Call<Int>, t: Throwable) {
+               TODO("Not yet implemented")
+           }
+       })
     }
 }

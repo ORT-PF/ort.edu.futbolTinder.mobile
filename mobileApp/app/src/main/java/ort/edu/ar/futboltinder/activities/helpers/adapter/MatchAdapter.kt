@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.helpers.listener.OnMatchClickedListener
+import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
+import ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse
 import ort.edu.ar.futboltinder.domain.Match.viewModels.Match
+import retrofit2.Callback
 
 class MatchAdapter(
-    private val matchList: List<Match>,
+    private val matchList: List<MatchListResponse>,
     private val onMatchClickedListener: OnMatchClickedListener
     ) : RecyclerView.Adapter<MatchViewHolder>() {
 

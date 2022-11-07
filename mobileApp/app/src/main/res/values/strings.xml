@@ -30,4 +30,8 @@
     <string name="crear">Crear</string>
     <string name="direcci_n">Dirección</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="encuentra_a_tus_compa_eros_de_equipo">Encuentra a tus compañeros de equipo!</string>
+
+    //PARAMS_NAMES_CONSTANTES
+    <string name="USER_ID_PARAM_NAME">userId</string>
 </resources>
