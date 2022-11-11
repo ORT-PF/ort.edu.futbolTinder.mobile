@@ -22,6 +22,7 @@ import retrofit2.Response
 
 
 class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
+    private val userId = HomeActivity.getCurrentUserId()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +36,6 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
 
         val retrofitClient = RetrofitClientBuilderHeroku.buildService(RetrofitJoinedMatch::class.java)
         val recyclerView    = view.findViewById<RecyclerView>(R.id.recyclerViewJoinedMatch)
-        val userId = HomeActivity.getCurrentUserId()
 
         retrofitClient.getJoinedMatches(userId).enqueue( object : Callback<List<MatchListResponse>>  {
             override fun onResponse(
