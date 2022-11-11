@@ -60,4 +60,9 @@
             android:name="paramToMap"
             app:argType="ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm" />
     </fragment>
+    <fragment
+        android:id="@+id/joinedMatchFragment"
+        android:name="ort.edu.ar.futboltinder.activities.home.fragments.JoinedMatchFragment"
+        android:label="fragment_joined_match"
+        tools:layout="@layout/fragment_joined_match" />
 </navigation>
