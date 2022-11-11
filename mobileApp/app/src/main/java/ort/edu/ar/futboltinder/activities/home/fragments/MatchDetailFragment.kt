@@ -5,16 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.activities.home.HomeActivity
 
 
 class MatchDetailFragment : Fragment() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var userId = HomeActivity.getCurrentUserId()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +27,25 @@ class MatchDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val matchName = view.findViewById<TextView>(R.id.textViewName)
-        matchName.text = "Nombre: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.fieldName
+        matchName.text =
+            "Nombre: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.fieldName
 
         val matchAdress = view.findViewById<TextView>(R.id.textViewAdress)
-        matchAdress.text = "Direccion: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.fieldAddress
+        matchAdress.text =
+            "Direccion: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.fieldAddress
 
         val matchQuotaNumber = view.findViewById<TextView>(R.id.textViewQuotaNumber)
-        matchQuotaNumber.text = "Jugadores: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.originalQuota.toString()
-    }
+        matchQuotaNumber.text =
+            "Jugadores: " + MatchDetailFragmentArgs.fromBundle(requireArguments()).match.originalQuota.toString()
 
+        val buttonJoinMatch = view.findViewById<Button>(R.id.buttonJoinMatch)
+
+        buttonJoinMatch.setOnClickListener {
+            val actionBack =
+            MatchDetailFragmentDirections.actionMatchDetailFragmentToMatchListFragment()
+            view.findNavController().navigate((actionBack))
+            // Luego reemplazamos por funcioanalidad real para unirse
+        }
+
+    }
 }

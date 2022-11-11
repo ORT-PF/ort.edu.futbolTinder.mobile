@@ -10,8 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
+import ort.edu.ar.futboltinder.domain.Dal.models.LoggedUser
+import ort.edu.ar.futboltinder.domain.Dal.repository.AppRepository
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
 import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilder
@@ -25,10 +29,7 @@ class LoginFragment : Fragment() {
     lateinit var userText : EditText
     lateinit var passwordText : EditText
     lateinit var loginButton : Button
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var appRepository: AppRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +44,8 @@ class LoginFragment : Fragment() {
 
     override fun onStart(){
         super.onStart()
+
+        appRepository = AppRepository.getInstance(requireContext())
 
         loginButton.setOnClickListener {
             var userInput = userText.text.toString()
@@ -62,8 +65,11 @@ class LoginFragment : Fragment() {
             Callback<UserAuthenticationResponse> {
             override fun onResponse(call: Call<UserAuthenticationResponse>, response: Response<UserAuthenticationResponse>){
                 if(response.isSuccessful){
-                    val intent = Intent(activity, HomeActivity::class.java)
-                    startActivity(intent)
+                    var authenticatedUser = response.body()
+                    val userId = checkIfUserAlreadyRegistered(authenticatedUser)
+
+                    val action = LoginFragmentDirections.actionLoginFragmentToAddressLocationFragment(userId!!)
+                    vista.findNavController().navigate(action)
                 }
             }
 
@@ -72,5 +78,21 @@ class LoginFragment : Fragment() {
                 Toast.makeText(activity, "Ha ocurrido un error. Por favor intente más tarde", Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun checkIfUserAlreadyRegistered(authenticatedUser: UserAuthenticationResponse?) : Long?{
+        val user = appRepository.getUserById(authenticatedUser?.userId!!.toInt())
+        var userId : Long? = null
+        if(user == null){
+            userId = appRepository.addUser(LoggedUser(
+                authenticatedUser.userId.toInt(),
+                authenticatedUser.userName,
+                authenticatedUser.token
+            ))
+        }
+        else{
+            userId = authenticatedUser.userId.toLong()
+        }
+        return userId
     }
 }

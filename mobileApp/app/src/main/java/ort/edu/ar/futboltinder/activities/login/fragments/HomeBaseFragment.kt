@@ -15,9 +15,6 @@ class HomeBaseFragment : Fragment() {
     lateinit var vista : View
     lateinit var registrationButton : Button
     lateinit var loginButton : Button
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
