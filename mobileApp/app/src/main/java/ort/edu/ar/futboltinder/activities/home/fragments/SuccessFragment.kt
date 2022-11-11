@@ -21,7 +21,7 @@ class SuccessFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_success, container, false)
-        backButton = vista.findViewById(R.id.successfullMatchJoinButton)
+        backButton = vista.findViewById(R.id.backButton)
 
         return vista
     }
