@@ -42,6 +42,10 @@ class HomeActivity : AppCompatActivity() {
             return loggedUserId
         }
 
+        fun endSession(){
+            loggedUserId = null
+        }
+
         fun setUserCurrentLocation(location : LatLng){
             userCurrentLocation = location
         }
