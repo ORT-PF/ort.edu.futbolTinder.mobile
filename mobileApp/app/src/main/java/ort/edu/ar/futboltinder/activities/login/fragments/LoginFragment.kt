@@ -68,7 +68,7 @@ class LoginFragment : Fragment() {
                     var authenticatedUser = response.body()
                     val userId = checkIfUserAlreadyRegistered(authenticatedUser)
 
-                    val action = LoginFragmentDirections.actionLoginFragmentToAddressLocationFragment(userId!!)
+                    val action = LoginFragmentDirections.actionLoginFragmentToSuccessLoginFragment(userId!!)
                     vista.findNavController().navigate(action)
                 }
             }

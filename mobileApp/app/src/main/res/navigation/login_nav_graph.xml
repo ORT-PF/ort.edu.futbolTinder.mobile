@@ -11,8 +11,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_addressLocationFragment"
-            app:destination="@id/addressLocationFragment" />
+            android:id="@+id/action_loginFragment_to_successLoginFragment"
+            app:destination="@id/successLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeBaseFragment"
@@ -39,6 +39,18 @@
         android:id="@+id/addressLocationFragment"
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.AddressLocationFragment"
         android:label="AddressLocationFragment" >
+        <argument
+            android:name="userId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/successLoginFragment"
+        android:name="ort.edu.ar.futboltinder.activities.login.fragments.SuccessLoginFragment"
+        android:label="fragment_success_login"
+        tools:layout="@layout/fragment_success_login" >
+        <action
+            android:id="@+id/action_successLoginFragment_to_addressLocationFragment"
+            app:destination="@id/addressLocationFragment" />
         <argument
             android:name="userId"
             app:argType="long" />
