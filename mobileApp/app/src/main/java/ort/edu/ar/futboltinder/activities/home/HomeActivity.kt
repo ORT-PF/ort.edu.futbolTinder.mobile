@@ -8,6 +8,8 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ort.edu.ar.futboltinder.R
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var bottomNavView : BottomNavigationView
@@ -53,5 +55,12 @@ class HomeActivity : AppCompatActivity() {
         fun getUserCurrentLocation() : LatLng?{
             return userCurrentLocation
         }
+
+        fun formatDateTime(dateToFormat: String): String {
+
+        val localDateTime: LocalDateTime = LocalDateTime.parse(dateToFormat)
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy   HH:mm")
+        return formatter.format(localDateTime)
+    }
     }
 }

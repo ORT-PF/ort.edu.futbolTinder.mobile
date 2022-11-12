@@ -1,5 +1,6 @@
 package ort.edu.ar.futboltinder.activities.home.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,19 +10,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchAdapter
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
-import ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse
+import ort.edu.ar.futboltinder.activities.home.HomeActivity.Companion.formatDateTime
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilderHeroku
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.JoinMatch.RetrofitJoinMatchCreationService
-import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchList.RetrofitMatchesByDistanceAndUser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class MatchDetailFragment : Fragment() {
@@ -37,6 +36,7 @@ class MatchDetailFragment : Fragment() {
         return vista
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,6 +52,9 @@ class MatchDetailFragment : Fragment() {
         val matchQuotaNumber = vista.findViewById<TextView>(R.id.textViewQuotaNumber)
         matchQuotaNumber.text =
             "Jugadores: " + match.originalQuota.toString()
+
+        val matchDateTimeDetail = vista.findViewById<TextView>(R.id.textViewDateTimeDetail)
+        matchDateTimeDetail.text ="Fecha: " + formatDateTime(match.dateTime)
 
         val buttonJoinMatch = vista.findViewById<Button>(R.id.buttonJoinMatch)
 
@@ -90,4 +93,6 @@ class MatchDetailFragment : Fragment() {
             }
         })
     }
+
+
 }

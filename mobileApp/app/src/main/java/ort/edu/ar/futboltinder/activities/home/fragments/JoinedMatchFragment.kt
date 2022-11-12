@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchAdapter
+import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchJoinedAdapter
 import ort.edu.ar.futboltinder.activities.helpers.listener.OnMatchClickedListener
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse
@@ -45,7 +46,7 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
                 if (response.isSuccessful) {
                     val matchesList = response.body()
 
-                    val adapter = matchesList?.let { MatchAdapter(it, this@JoinedMatchFragment) }
+                    val adapter = matchesList?.let { MatchJoinedAdapter(it) }
                     recyclerView.layoutManager = LinearLayoutManager(context)
                     recyclerView.adapter = adapter
                 }
