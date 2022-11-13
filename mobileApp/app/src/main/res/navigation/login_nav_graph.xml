@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/successLoginFragment"
-        android:name="ort.edu.ar.futboltinder.activities.login.fragments.SuccessLoginFragment"
+        android:name="ort.edu.ar.futboltinder.activities.login.fragments.SuccessRegistrationFragment"
         android:label="SuccessLoginFragment" >
         <action
             android:id="@+id/action_successLoginFragment_to_loginFragment"

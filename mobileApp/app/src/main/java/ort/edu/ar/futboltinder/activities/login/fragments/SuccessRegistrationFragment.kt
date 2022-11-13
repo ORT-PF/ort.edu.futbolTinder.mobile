@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.home.fragments.SuccessFragmentDirections
 
 
-class SuccessLoginFragment : Fragment() {
+class SuccessRegistrationFragment : Fragment() {
 
     lateinit var vista : View
     lateinit var backButton : Button
@@ -36,7 +35,7 @@ class SuccessLoginFragment : Fragment() {
         super.onStart()
 
         backButton.setOnClickListener(){
-            val action = SuccessLoginFragmentDirections.actionSuccessLoginFragmentToLoginFragment()
+            val action = SuccessRegistrationFragmentDirections.actionSuccessLoginFragmentToLoginFragment()
             vista.findNavController().navigate(action)
 
         }
