@@ -44,13 +44,21 @@
             android:textSize="24sp">
         </TextView>
 
-        <TextView
+        <!--<TextView
             android:id="@+id/textViewPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jugadores:"
             android:textColor="@color/black"
             android:fontFamily="@font/akaya_telivigala"
+            android:textSize="24sp">
+        </TextView>-->
+
+        <TextView
+            android:id="@+id/textViewDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha:"
             android:textSize="24sp">
         </TextView>
 
