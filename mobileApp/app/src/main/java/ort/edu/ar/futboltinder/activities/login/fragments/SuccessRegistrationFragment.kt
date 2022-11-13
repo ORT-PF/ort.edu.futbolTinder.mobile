@@ -25,7 +25,7 @@ class SuccessRegistrationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_success_login, container, false)
+        vista = inflater.inflate(R.layout.fragment_success_registration, container, false)
         backButton = vista.findViewById(R.id.loginSuccessButton)
 
         return vista
