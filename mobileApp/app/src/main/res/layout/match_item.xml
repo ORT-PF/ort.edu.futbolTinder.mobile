@@ -34,15 +34,15 @@
             android:textSize="24sp">
         </TextView>
 
-        <TextView
-            android:id="@+id/textViewDateTime"
+<!--        <TextView
+            android:id="@+id/textViewDateTime2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Día y Hora:"
             android:textColor="@color/black"
             android:fontFamily="@font/akaya_telivigala"
             android:textSize="24sp">
-        </TextView>
+        </TextView>-->
 
         <!--<TextView
             android:id="@+id/textViewPlayers"

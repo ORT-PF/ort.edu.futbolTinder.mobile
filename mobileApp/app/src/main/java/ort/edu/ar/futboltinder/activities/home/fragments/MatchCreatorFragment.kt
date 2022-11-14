@@ -17,6 +17,9 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.LocalTime
 import android.app.TimePickerDialog.OnTimeSetListener
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.*
 
 
 class MatchCreatorFragment : Fragment() {
@@ -26,6 +29,7 @@ class MatchCreatorFragment : Fragment() {
     lateinit var quotaNumber: EditText
     lateinit var dateField: EditText
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    val formatterApi = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a", Locale.ENGLISH)
     lateinit var startTime: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,7 +93,7 @@ class MatchCreatorFragment : Fragment() {
                     nameText.text.toString(),
                     quotaNumber.text.toString().toInt(),
                     null,
-                    dateField.text.toString() + startTime.text.toString(),
+                    formatDateTimeToApiFormat(),
                     null,
                     null
                 )
@@ -112,7 +116,7 @@ class MatchCreatorFragment : Fragment() {
         private fun showStartTimePicker() {
             val time = startTime.getTime()
             showDialog(time.hour, time.minute) { _, hour, minute ->
-            val currentTime = LocalTime.of(hour, minute)
+            val currentTime = LocalTime.of(hour, minute, 0)
                 startTime.setTime(currentTime)
             }
         }
@@ -132,5 +136,13 @@ class MatchCreatorFragment : Fragment() {
                 return false
             }
             return true
+        }
+
+        private fun formatDateTimeToApiFormat() : String{
+            var pickerDate = dateField.text.toString()+" "+startTime.text.toString()
+            var matchDate = LocalDateTime.parse(pickerDate, formatterApi)
+            matchDate.atZone(ZoneId.of("UTC-3"))
+
+            return matchDate.toString()
         }
     }
