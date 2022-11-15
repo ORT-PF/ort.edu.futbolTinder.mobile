@@ -32,7 +32,15 @@
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
-            android:id="@+id/action_registrationFragment_to_loginFragment"
+            android:id="@+id/action_registrationFragment_to_successLoginFragment"
+            app:destination="@id/successRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successRegistrationFragment"
+        android:name="ort.edu.ar.futboltinder.activities.login.fragments.SuccessRegistrationFragment"
+        android:label="SuccessRegistrationFragment">
+        <action
+            android:id="@+id/action_successLoginFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment

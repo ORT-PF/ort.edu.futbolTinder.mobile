@@ -85,7 +85,7 @@ class RegistrationFragment : Fragment() {
             Callback<UserRegistrationResponse> {
             override fun onResponse(call: Call<UserRegistrationResponse>, response: Response<UserRegistrationResponse>){
                 if(response.isSuccessful){
-                    val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+                    val action = RegistrationFragmentDirections.actionRegistrationFragmentToSuccessLoginFragment()
                     vista.findNavController().navigate(action)
                 }
             }

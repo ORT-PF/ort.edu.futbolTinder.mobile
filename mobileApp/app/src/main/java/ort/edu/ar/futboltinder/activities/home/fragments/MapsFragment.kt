@@ -143,8 +143,6 @@ class MapsFragment : Fragment() {
                     MapsFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
 
-                //TODO: Remover esta llamada cuando esté implementado el datepicker
-                val formattedDateTime = getFormattedTodayDatePlusOneDay()
 
                 val createdMatch =
                     MatchCreationPostModel(
@@ -153,7 +151,7 @@ class MapsFragment : Fragment() {
                         positionAddress?.getAddressLine(0)!!,
                         positionLatLng.longitude,
                         positionLatLng.latitude,
-                        formattedDateTime,
+                        match.dateTime!!,
                         userId.toString()
                     )
 
@@ -297,16 +295,6 @@ class MapsFragment : Fragment() {
        })
     }
 
-    private fun getFormattedTodayDatePlusOneDay() : String{
-        val tomorrowDateTime = LocalDateTime.now().plusDays(1)
-        return formatDateTimeToApiFormat(tomorrowDateTime)
-    }
 
-    private fun formatDateTimeToApiFormat(date : LocalDateTime) : String{
-        val dateString = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).replace("\\s+".toRegex(), "T")
-        val sb = StringBuilder()
-        sb.append(dateString)
-        sb.append("Z")
-        return sb.toString()
-    }
+
 }
