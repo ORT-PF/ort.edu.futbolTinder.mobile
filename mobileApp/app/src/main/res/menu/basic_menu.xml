@@ -4,7 +4,8 @@
     <item
         android:id="@+id/matchBaseFragment"
         android:title="Home"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_home"
+        />
 
     <item
         android:id="@+id/joinedMatchFragment"
