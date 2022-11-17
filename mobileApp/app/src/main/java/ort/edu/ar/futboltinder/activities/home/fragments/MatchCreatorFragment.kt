@@ -135,6 +135,18 @@ class MatchCreatorFragment : Fragment() {
                 Toast.makeText(activity, "El cupo de jugadores es requerido", Toast.LENGTH_LONG).show()
                 return false
             }
+
+            val str = quotaNumber.text
+            val num = Integer.parseInt(str.toString())
+
+            if (num > 10) {
+                Toast.makeText(
+                    activity,
+                    "La cantidad de jugadores debe estar entre 1 y 10",
+                    Toast.LENGTH_LONG
+                ).show()
+                return false
+            }
             return true
         }
 
