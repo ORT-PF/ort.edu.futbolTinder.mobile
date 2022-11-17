@@ -34,7 +34,6 @@ class HomeActivity : AppCompatActivity() {
         setupDrawerLayout()
 
         userId = intent.getLongExtra(getString(R.string.USER_ID_PARAM_NAME), 10000)
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
 
         setLoggedUserId(userId!!)
 

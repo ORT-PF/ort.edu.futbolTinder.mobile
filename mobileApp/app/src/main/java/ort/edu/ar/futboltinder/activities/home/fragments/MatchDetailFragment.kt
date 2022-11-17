@@ -51,7 +51,7 @@ class MatchDetailFragment : Fragment() {
 
         val matchQuotaNumber = vista.findViewById<TextView>(R.id.textViewQuotaNumber)
         matchQuotaNumber.text =
-            "Jugadores: " + match.originalQuota.toString()
+            "Jugadores: " + match.remainingQuota.toString()
 
         val matchDateTimeDetail = vista.findViewById<TextView>(R.id.textViewDateTimeDetail)
         matchDateTimeDetail.text ="Fecha: " + formatDateTime(match.dateTime)
