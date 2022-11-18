@@ -50,8 +50,10 @@ class MatchDetailFragment : Fragment() {
             "Direccion: " + match.fieldAddress
 
         val matchQuotaNumber = vista.findViewById<TextView>(R.id.textViewQuotaNumber)
-        matchQuotaNumber.text =
-            "Jugadores: " + match.remainingQuota.toString()
+
+         val cuposLibres    = match.remainingQuota
+
+        matchQuotaNumber.text = "Cupos libres: $cuposLibres"
 
         val matchDateTimeDetail = vista.findViewById<TextView>(R.id.textViewDateTimeDetail)
         matchDateTimeDetail.text ="Fecha: " + formatDateTime(match.dateTime)
@@ -63,6 +65,9 @@ class MatchDetailFragment : Fragment() {
                 Toast.makeText(requireContext(), "No se puede unir a un partido que ud mismo ha creado", Toast.LENGTH_LONG).show()
             }
             else{
+                if (cuposLibres == 0) {
+                    Toast.makeText(requireContext(), "Ya no quedan cupos libres en el partido", Toast.LENGTH_LONG).show()
+                } else
                 joinMatch(userId, match.id)
             }
         }
