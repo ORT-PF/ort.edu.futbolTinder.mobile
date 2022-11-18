@@ -31,6 +31,7 @@ class MatchCreatorFragment : Fragment() {
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
     val formatterApi = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a", Locale.ENGLISH)
     lateinit var startTime: TextView
+    val maxPlayers = 9
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +134,18 @@ class MatchCreatorFragment : Fragment() {
             }
             if (quotaNumber.text.isNullOrEmpty()) {
                 Toast.makeText(activity, "El cupo de jugadores es requerido", Toast.LENGTH_LONG).show()
+                return false
+            }
+
+            val str = quotaNumber.text
+            val num = Integer.parseInt(str.toString())
+
+            if (num > maxPlayers) {
+                Toast.makeText(
+                    activity,
+                    "La cantidad de jugadores debe estar entre 1 y 9",
+                    Toast.LENGTH_LONG
+                ).show()
                 return false
             }
             return true
