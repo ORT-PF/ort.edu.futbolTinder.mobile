@@ -18,6 +18,7 @@
 
 
     <item
+        android:id="@+id/endSessionFragment2"
         android:title="Cerrar Sesión"
         android:icon="@drawable/ic_logout"/>
 

@@ -32,7 +32,7 @@ class EndSessionFragment : Fragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             navigateLoginActivity()
-        }, 1500)
+        }, 1000)
     }
 
     private fun navigateLoginActivity() {
