@@ -74,4 +74,9 @@
             android:id="@+id/action_succesfullMatchJoinFragment_to_joinedMatchFragment"
             app:destination="@id/joinedMatchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/endSessionFragment2"
+        android:name="ort.edu.ar.futboltinder.activities.home.fragments.EndSessionFragment"
+        android:label="fragment_end_session"
+        tools:layout="@layout/fragment_end_session" />
 </navigation>

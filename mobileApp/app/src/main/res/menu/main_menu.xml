@@ -10,7 +10,7 @@
         android:title="Crear"/>
     <item android:id= "@+id/matchListFragment"
         android:title="Buscar"/>
-    <item
+   <!-- <item
         android:id="@+id/joinedMatchFragment"
-        android:title="Unidos" />
+        android:title="Unidos" />-->
 </menu>

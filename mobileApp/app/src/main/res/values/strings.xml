@@ -33,6 +33,7 @@
     <string name="encuentra_a_tus_compa_eros_de_equipo">Encuentra a tus compañeros de equipo!</string>
     <string name="api_error">Ha ocurrido un error. Por favor probá de vuelta más tarde</string>
     <string name="location_message">Por favor, habilitá la ubicación en tu dispositivo</string>
+    <string name="end_session_success_text">Ha cerrado la sesión exitosamente!</string>
     //PARAMS_NAMES_CONSTANTES
     <string name="USER_ID_PARAM_NAME">userId</string>
 </resources>
