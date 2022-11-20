@@ -7,6 +7,7 @@ data class MatchCreatorForm(
     val fieldName: String?,
     val originalQuota: Int,
     val fieldAddress: String?,
+    val dateTime: String?,
     val longitude: Double?,
     val latitude: Double?
 ) : Parcelable{
@@ -15,15 +16,16 @@ data class MatchCreatorForm(
         parcel.readString(),
         parcel.readInt(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readDouble(),
         parcel.readDouble()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(fieldName)
-        parcel.writeString(fieldAddress)
         parcel.writeInt(originalQuota)
+        parcel.writeString(fieldAddress)
+        parcel.writeString(dateTime)
         parcel.writeDouble(longitude!!)
         parcel.writeDouble(latitude!!)
     }

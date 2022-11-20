@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
 
-class MatchBaseFragment() : Fragment() {
+class MatchBaseFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

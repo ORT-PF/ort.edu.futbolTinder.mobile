@@ -2,12 +2,9 @@ package ort.edu.ar.futboltinder.activities.home.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
-import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,10 +16,10 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -35,12 +32,13 @@ import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreationPostModel
 import ort.edu.ar.futboltinder.domain.Match.Forms.MatchCreatorForm
-import ort.edu.ar.futboltinder.domain.Match.Responses.MatchCreatorResponse
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitClientBuilderHeroku
 import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.MatchCreation.RetrofitMatchCreationService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MapsFragment : Fragment() {
 
@@ -86,7 +84,6 @@ class MapsFragment : Fragment() {
             override fun onMapClick(point: LatLng) {
                 map.clear()
                 selectedMarker = map.addMarker(MarkerOptions().position(point))
-                var number = 0
             }
         })
     }
@@ -121,7 +118,7 @@ class MapsFragment : Fragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        map?.let { map ->
+        map.let { map ->
             outState.putParcelable(MapsFragment.KEY_CAMERA_POSITION, map.cameraPosition)
             outState.putParcelable(MapsFragment.KEY_LOCATION, lastKnownLocation)
         }
@@ -146,16 +143,15 @@ class MapsFragment : Fragment() {
                     MapsFragment.ADDRESS_SEARCH_MAXIMUM_RESULTS
                 )).firstOrNull()
 
-                val dateTime : String = "2022-11-05T14:14:14.224Z"
 
                 val createdMatch =
                     MatchCreationPostModel(
                         match.fieldName!!,
                         match.originalQuota,
                         positionAddress?.getAddressLine(0)!!,
-                        positionLatLng.latitude,
                         positionLatLng.longitude,
-                        dateTime,
+                        positionLatLng.latitude,
+                        match.dateTime!!,
                         userId.toString()
                     )
 
@@ -191,11 +187,11 @@ class MapsFragment : Fragment() {
         }
         try {
             if (locationPermissionGranted) {
-                map?.isMyLocationEnabled = true
-                map?.uiSettings?.isMyLocationButtonEnabled = true
+                map.isMyLocationEnabled = true
+                map.uiSettings.isMyLocationButtonEnabled = true
             } else {
-                map?.isMyLocationEnabled = false
-                map?.uiSettings?.isMyLocationButtonEnabled = false
+                map.isMyLocationEnabled = false
+                map.uiSettings.isMyLocationButtonEnabled = false
                 lastKnownLocation = null
                 getLocationPermission()
             }
@@ -218,14 +214,14 @@ class MapsFragment : Fragment() {
                         // Set the map's camera position to the current location of the device.
                         lastKnownLocation = task.result
                         if (lastKnownLocation != null) {
-                            map?.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                 LatLng(lastKnownLocation!!.latitude,
                                     lastKnownLocation!!.longitude), MapsFragment.DEFAULT_ZOOM.toFloat()))
                         }
                     } else {
-                        map?.moveCamera(CameraUpdateFactory
+                        map.moveCamera(CameraUpdateFactory
                             .newLatLngZoom(defaultLocation, MapsFragment.DEFAULT_ZOOM.toFloat()))
-                        map?.uiSettings?.isMyLocationButtonEnabled = false
+                        map.uiSettings.isMyLocationButtonEnabled = false
                     }
                 }
             }
@@ -284,13 +280,21 @@ class MapsFragment : Fragment() {
         )
        retrofitClient.createMatch(matchCreatorForm).enqueue( object : Callback<Int> {
            override fun onResponse(call: Call<Int>, response: Response<Int>) {
-               val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
-               vista.findNavController().navigate(action)
+               if(response.isSuccessful) {
+                   val action = MapsFragmentDirections.actionMapsFragmentToSuccessFragment()
+                   vista.findNavController().navigate(action)
+               }
+               else{
+                   Toast.makeText(context, getString(R.string.api_error),Toast.LENGTH_LONG)
+               }
            }
 
            override fun onFailure(call: Call<Int>, t: Throwable) {
-               TODO("Not yet implemented")
+               Toast.makeText(context, getString(R.string.api_error),Toast.LENGTH_LONG)
            }
        })
     }
+
+
+
 }

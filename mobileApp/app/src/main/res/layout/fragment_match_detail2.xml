@@ -12,14 +12,16 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:orientation="vertical"
         android:layout_marginTop="50dp"
         android:layout_marginStart="45dp"
         android:layout_marginEnd="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#B3FFFFFF"
+        >
 
 
 
@@ -40,6 +42,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            />
+
+        <TextView
+            android:id="@+id/textViewDateTimeDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
 
     </LinearLayout>
 

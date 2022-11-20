@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id= "@+id/matchBaseFragment"
         android:title="@string/inicio"/>
     <item
         android:id= "@+id/matchCreatorFragment"
-        android:title="Crear Partido"/>
+        android:title="Crear"/>
     <item android:id= "@+id/matchListFragment"
-        android:title="Buscar Partido"/>
-
-
+        android:title="Buscar"/>
+   <!-- <item
+        android:id="@+id/joinedMatchFragment"
+        android:title="Unidos" />-->
 </menu>

@@ -27,10 +27,6 @@ class RegistrationFragment : Fragment() {
     lateinit var  userEmailText : EditText
     lateinit var registrationButton : Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -89,7 +85,7 @@ class RegistrationFragment : Fragment() {
             Callback<UserRegistrationResponse> {
             override fun onResponse(call: Call<UserRegistrationResponse>, response: Response<UserRegistrationResponse>){
                 if(response.isSuccessful){
-                    val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+                    val action = RegistrationFragmentDirections.actionRegistrationFragmentToSuccessLoginFragment()
                     vista.findNavController().navigate(action)
                 }
             }

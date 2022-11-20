@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import ort.edu.ar.futboltinder.R
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
 import ort.edu.ar.futboltinder.domain.Dal.models.LoggedUser
@@ -28,10 +30,6 @@ class LoginFragment : Fragment() {
     lateinit var passwordText : EditText
     lateinit var loginButton : Button
     private lateinit var appRepository: AppRepository
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,9 +68,8 @@ class LoginFragment : Fragment() {
                     var authenticatedUser = response.body()
                     val userId = checkIfUserAlreadyRegistered(authenticatedUser)
 
-                    val intent = Intent(activity, HomeActivity::class.java)
-                    intent.putExtra(getString(R.string.USER_ID_PARAM_NAME), userId)
-                    startActivity(intent)
+                    val action = LoginFragmentDirections.actionLoginFragmentToSuccessLoginFragment(userId!!)
+                    vista.findNavController().navigate(action)
                 }
             }
 
@@ -87,10 +84,14 @@ class LoginFragment : Fragment() {
         val user = appRepository.getUserById(authenticatedUser?.userId!!.toInt())
         var userId : Long? = null
         if(user == null){
-            userId = appRepository.addUser(LoggedUser(authenticatedUser?.userId!!.toInt(), authenticatedUser?.userName, authenticatedUser?.token))
+            userId = appRepository.addUser(LoggedUser(
+                authenticatedUser.userId.toInt(),
+                authenticatedUser.userName,
+                authenticatedUser.token
+            ))
         }
         else{
-            userId = authenticatedUser?.userId!!.toLong()
+            userId = authenticatedUser.userId.toLong()
         }
         return userId
     }

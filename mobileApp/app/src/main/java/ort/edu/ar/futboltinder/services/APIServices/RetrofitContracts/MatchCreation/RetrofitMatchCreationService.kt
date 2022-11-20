@@ -12,7 +12,6 @@ import retrofit2.http.*
 
 interface RetrofitMatchCreationService {
 
-    //@Headers("Content-Type: application/json")
     @POST("/partidos/add")
     fun createMatch( @Body userData : MatchCreationPostModel ): Call<Int>
 }
