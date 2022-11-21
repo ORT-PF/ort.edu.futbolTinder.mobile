@@ -81,4 +81,8 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    //implementación de cardview
+    implementation("androidx.cardview:cardview:1.0.0")
+
 }

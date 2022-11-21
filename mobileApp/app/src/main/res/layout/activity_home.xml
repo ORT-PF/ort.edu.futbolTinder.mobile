@@ -33,7 +33,6 @@
             android:orientation="vertical"
             >
 
-
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView2"
                 android:name="androidx.navigation.fragment.NavHostFragment"
@@ -42,12 +41,9 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/home_nav_graph"
                 />
-
-
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     <com.google.android.material.navigation.NavigationView
          android:id="@+id/nav_view"
@@ -57,8 +53,5 @@
          app:menu="@menu/basic_menu"
          android:fitsSystemWindows="true"
          />
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>
 

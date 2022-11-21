@@ -12,18 +12,22 @@
 
         <TextView
             android:id="@+id/successfullMatchJoinText"
-            android:layout_width="314dp"
-            android:layout_height="88dp"
+            android:layout_width="305dp"
+            android:layout_height="156dp"
+            android:fontFamily="@font/akaya_telivigala"
+            android:shadowColor="#000000"
+            android:shadowDx="10"
+            android:shadowDy="15"
+            android:shadowRadius="10"
             android:text="Se ha unido exitosamente al partido!"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="34sp"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.244" />
+            app:layout_constraintVertical_bias="0.178" />
 
         <Button
             android:id="@+id/successfullMatchJoinButton"

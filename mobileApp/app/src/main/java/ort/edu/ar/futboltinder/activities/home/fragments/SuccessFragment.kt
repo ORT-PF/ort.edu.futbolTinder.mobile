@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import ort.edu.ar.futboltinder.R
 
@@ -19,6 +20,8 @@ class SuccessFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            "Fútbol Tinder"
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_success, container, false)
         backButton = vista.findViewById(R.id.backButton)
