@@ -17,6 +17,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.LocalTime
 import android.app.TimePickerDialog.OnTimeSetListener
+import androidx.appcompat.app.AppCompatActivity
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.*
@@ -42,6 +43,8 @@ class MatchCreatorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            "Crear Partido"
         // Inflate the layout for this fragment
         val defaultDateString = LocalDate.now().format(formatter)
 

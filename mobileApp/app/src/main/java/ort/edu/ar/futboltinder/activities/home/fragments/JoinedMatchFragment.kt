@@ -2,15 +2,15 @@ package ort.edu.ar.futboltinder.activities.home.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchAdapter
 import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchJoinedAdapter
 import ort.edu.ar.futboltinder.activities.helpers.listener.OnMatchClickedListener
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
@@ -29,6 +29,8 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            "Partidos a los que me uní"
         return inflater.inflate(R.layout.fragment_joined_match, container, false)
     }
 

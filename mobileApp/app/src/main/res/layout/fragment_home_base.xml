@@ -12,41 +12,52 @@
 
         <TextView
             android:id="@+id/homeTextView"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:fontFamily="sans-serif-black"
+            android:layout_width="311dp"
+            android:layout_height="67dp"
+            android:fontFamily="@font/akaya_telivigala"
+            android:shadowColor="#000000"
+            android:shadowDx="10"
+            android:shadowDy="15"
+            android:shadowRadius="10"
             android:text="@string/homeLoginBaseText"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.34"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.199" />
+            app:layout_constraintVertical_bias="0.19" />
 
         <Button
             android:id="@+id/homeLoginButton"
-            android:layout_width="245dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="60dp"
+            android:layout_width="202dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="244dp"
+            android:fontFamily="@font/akaya_telivigala"
             android:text="@string/homeLoginButtonText"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.451"
+            app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/homeTextView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/homeRegistrationButton"
-            android:layout_width="245dp"
-            android:layout_height="64dp"
+            android:layout_width="205dp"
+            android:layout_height="61dp"
+            android:layout_marginBottom="188dp"
+            android:fontFamily="@font/akaya_telivigala"
             android:text="@string/homeRegistrationButtonText"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.451"
+            app:layout_constraintHorizontal_bias="0.446"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/homeLoginButton"
-            app:layout_constraintVertical_bias="0.164" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="20dp"
     app:cardCornerRadius="5dp"
     app:cardElevation="8dp" >
 
@@ -18,7 +18,7 @@
             android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre"
+            android:text="Nombre de la Cancha"
             android:textColor="@color/black"
             android:fontFamily="@font/akaya_telivigala"
             android:textSize="24sp">
@@ -34,34 +34,14 @@
             android:textSize="24sp">
         </TextView>
 
-<!--        <TextView
-            android:id="@+id/textViewDateTime2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Día y Hora:"
-            android:textColor="@color/black"
-            android:fontFamily="@font/akaya_telivigala"
-            android:textSize="24sp">
-        </TextView>-->
-
-        <!--<TextView
-            android:id="@+id/textViewPlayers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jugadores:"
-            android:textColor="@color/black"
-            android:fontFamily="@font/akaya_telivigala"
-            android:textSize="24sp">
-        </TextView>-->
-
         <TextView
             android:id="@+id/textViewDateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fecha:"
-            android:textSize="24sp">
-        </TextView>
-
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/akaya_telivigala"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
