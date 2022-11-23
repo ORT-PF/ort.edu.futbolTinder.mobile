@@ -62,15 +62,15 @@ class RegistrationFragment : Fragment() {
             Toast.makeText(activity, "El mail es requerido", Toast.LENGTH_LONG).show()
             return false
         }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(userEmailText.text.toString()).matches()){
+            Toast.makeText(activity, "El formato de mail es inválido", Toast.LENGTH_LONG).show()
+            return false
+        }
         if(passwordText.text.isNullOrEmpty()){
             Toast.makeText(activity, "El password es requerido", Toast.LENGTH_LONG).show()
             return false
         }
-        if(passwordBisText.text.isNullOrEmpty()){
-            Toast.makeText(activity, "La repetición del password es requerida", Toast.LENGTH_LONG).show()
-            return false
-        }
-        if(passwordText.text.equals(passwordBisText.text)){
+        if(passwordText.text.toString() != passwordBisText.text.toString()){
             Toast.makeText(activity, "Los passwords ingresados no coinciden", Toast.LENGTH_LONG).show()
             return false
         }
