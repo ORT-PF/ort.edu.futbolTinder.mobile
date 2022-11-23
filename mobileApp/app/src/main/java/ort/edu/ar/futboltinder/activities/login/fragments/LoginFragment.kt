@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun checkIfUserAlreadyRegistered(authenticatedUser: UserAuthenticationResponse?) : Long? {
-        val user = appRepository.getUserById(100)
+        val user = appRepository.getUserById(authenticatedUser?.userId!!.toInt())
         var userId: Long? = null
         if (user == null) {
             userId = appRepository.addUser(
