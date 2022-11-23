@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id= "@+id/matchBaseFragment"
+        android:id= "@+id/action_match_base"
         android:title="@string/inicio"
         android:icon="@drawable/ic_home"/>
     <item
-        android:id= "@+id/matchCreatorFragment"
+        android:id= "@+id/action_match_creator"
         android:title="Crear"
         android:icon="@drawable/ic_create"/>
 
-    <item android:id= "@+id/matchListFragment"
+    <item android:id= "@+id/action_match_list"
         android:title="Buscar"
         android:icon="@drawable/ic_search"/>
 
