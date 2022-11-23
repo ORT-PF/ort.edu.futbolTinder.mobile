@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -15,10 +16,9 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class HomeActivity : AppCompatActivity() {
-    private lateinit var bottomNavView : BottomNavigationView
-    private lateinit var navHostFragment : NavHostFragment
+    private lateinit var navHostFragment: NavHostFragment
 
-    private var userId : Long? = null
+    private var userId: Long? = null
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
 
@@ -29,7 +29,8 @@ class HomeActivity : AppCompatActivity() {
         // Busco y guardo la referencia a las vistas en variables
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.nav_view)
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
 
         setupDrawerLayout()
 
@@ -37,9 +38,27 @@ class HomeActivity : AppCompatActivity() {
 
         setLoggedUserId(userId!!)
 
-        bottomNavView = findViewById(R.id.bottomAppBar2)
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottomAppBar2)
 
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
+
+        bottomNavView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.action_match_base -> {
+                    navHostFragment.navController.navigate(R.id.matchBaseFragment)
+                    true
+                }
+                R.id.action_match_creator -> {
+                    navHostFragment.navController.navigate(R.id.matchCreatorFragment)
+                    true
+                }
+                R.id.action_match_list -> {
+                    navHostFragment.navController.navigate(R.id.matchListFragment)
+                    true
+                }
+            }
+            false
+        }
     }
 
     private fun setupDrawerLayout() {
@@ -58,6 +77,7 @@ class HomeActivity : AppCompatActivity() {
 
         }
     }
+
     // Forzar el drawer a que se abra siempre
     override fun onSupportNavigateUp(): Boolean {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -69,37 +89,37 @@ class HomeActivity : AppCompatActivity() {
         return false
     }
 
-    companion object{
-        private var loggedUserId : Long? = null
-        private var userCurrentLocation : LatLng? = null
+    companion object {
+        private var loggedUserId: Long? = null
+        private var userCurrentLocation: LatLng? = null
 
-        fun setLoggedUserId(loggedUserIdParam : Long){
-            if(loggedUserId == null){
+        fun setLoggedUserId(loggedUserIdParam: Long) {
+            if (loggedUserId == null) {
                 loggedUserId = loggedUserIdParam
             }
         }
 
-        fun getCurrentUserId() : Long?{
+        fun getCurrentUserId(): Long? {
             return loggedUserId
         }
 
-        fun endSession(){
+        fun endSession() {
             loggedUserId = null
         }
 
-        fun setUserCurrentLocation(location : LatLng){
+        fun setUserCurrentLocation(location: LatLng) {
             userCurrentLocation = location
         }
 
-        fun getUserCurrentLocation() : LatLng?{
+        fun getUserCurrentLocation(): LatLng? {
             return userCurrentLocation
         }
 
         fun formatDateTime(dateToFormat: String): String {
 
-        val localDateTime: LocalDateTime = LocalDateTime.parse(dateToFormat)
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy   HH:mm")
-        return formatter.format(localDateTime)
-    }
+            val localDateTime: LocalDateTime = LocalDateTime.parse(dateToFormat)
+            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy   HH:mm")
+            return formatter.format(localDateTime)
+        }
     }
 }

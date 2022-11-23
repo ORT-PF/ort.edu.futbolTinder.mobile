@@ -20,8 +20,6 @@ import ort.edu.ar.futboltinder.services.APIServices.RetrofitContracts.JoinMatch.
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 class MatchDetailFragment : Fragment() {
@@ -34,7 +32,7 @@ class MatchDetailFragment : Fragment() {
     ): View? {
         (activity as AppCompatActivity?)!!.supportActionBar!!.title =
             "Detalle del Partido"
-        vista = inflater.inflate(R.layout.fragment_match_detail2, container, false)
+        vista = inflater.inflate(R.layout.fragment_match_detail, container, false)
         // Inflate the layout for this fragment
         return vista
     }
