@@ -1,6 +1,5 @@
 package ort.edu.ar.futboltinder.activities.login.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,10 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import ort.edu.ar.futboltinder.R
-import ort.edu.ar.futboltinder.activities.home.HomeActivity
-import ort.edu.ar.futboltinder.domain.Dal.models.LoggedUser
 import ort.edu.ar.futboltinder.domain.Dal.repository.AppRepository
 import ort.edu.ar.futboltinder.domain.Login.Forms.UserAuthenticationForm
 import ort.edu.ar.futboltinder.domain.Login.Responses.UserAuthenticationResponse
@@ -80,19 +76,7 @@ class LoginFragment : Fragment() {
         })
     }
 
-    private fun checkIfUserAlreadyRegistered(authenticatedUser: UserAuthenticationResponse?) : Long?{
-        val user = appRepository.getUserById(authenticatedUser?.userId!!.toInt())
-        var userId : Long? = null
-        if(user == null){
-            userId = appRepository.addUser(LoggedUser(
-                authenticatedUser.userId.toInt(),
-                authenticatedUser.userName,
-                authenticatedUser.token
-            ))
-        }
-        else{
-            userId = authenticatedUser.userId.toLong()
-        }
-        return userId
+    private fun checkIfUserAlreadyRegistered(authenticatedUser: UserAuthenticationResponse?): Long? {
+        return authenticatedUser?.userId?.toLong()
     }
 }
