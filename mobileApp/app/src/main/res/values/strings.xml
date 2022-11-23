@@ -35,6 +35,8 @@
     <string name="end_session_success_text">Ha cerrado sesión exitosamente!</string>
     //PARAMS_NAMES_CONSTANTES
     <string name="USER_ID_PARAM_NAME">userId</string>
+    <string name="back_to_home">Volver a Inicio</string>
+    <string name="match_created_successfuly">El partido se ha creado con éxito!</string>
 
 
 </resources>
