@@ -13,11 +13,6 @@
         android:icon="@drawable/ic_soccer"/>
 
     <item
-        android:title="Settings"
-        android:icon="@drawable/ic_settings"/>
-
-
-    <item
         android:id="@+id/endSessionFragment2"
         android:title="Cerrar Sesión"
         android:icon="@drawable/ic_logout"/>
