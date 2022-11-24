@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
+import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchAdapter
 import ort.edu.ar.futboltinder.activities.helpers.adapter.MatchJoinedAdapter
 import ort.edu.ar.futboltinder.activities.helpers.listener.OnMatchClickedListener
 import ort.edu.ar.futboltinder.activities.home.HomeActivity
@@ -48,7 +50,7 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
                 if (response.isSuccessful) {
                     val matchesList = response.body()
 
-                    val adapter = matchesList?.let { MatchJoinedAdapter(it) }
+                    val adapter = matchesList?.let { MatchAdapter(it, this@JoinedMatchFragment) }
                     recyclerView.layoutManager = LinearLayoutManager(context)
                     recyclerView.adapter = adapter
                 }
@@ -68,7 +70,7 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
     }
 
     override fun onMatchSelected(match: MatchListResponse) {
-        TODO("Not yet implemented")
+        findNavController().navigate(JoinedMatchFragmentDirections.actionJoinedMatchFragmentToJoinedMatchDetailFragment(match))
     }
 
 
