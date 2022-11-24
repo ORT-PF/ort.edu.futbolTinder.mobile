@@ -22,7 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MatchDetailFragment : Fragment() {
+class JoinedMatchDetailFragment : Fragment() {
     private var userId = HomeActivity.getCurrentUserId()!!.toInt()
     private lateinit var vista : View
 
@@ -32,7 +32,7 @@ class MatchDetailFragment : Fragment() {
     ): View? {
         (activity as AppCompatActivity?)!!.supportActionBar!!.title =
             "Detalle del Partido"
-        vista = inflater.inflate(R.layout.fragment_match_detail, container, false)
+        vista = inflater.inflate(R.layout.fragment_joined_match_detail, container, false)
         // Inflate the layout for this fragment
         return vista
     }
@@ -59,33 +59,25 @@ class MatchDetailFragment : Fragment() {
         val matchDateTimeDetail = vista.findViewById<TextView>(R.id.textViewDateTimeDetail)
         matchDateTimeDetail.text ="Fecha: " + formatDateTime(match.dateTime)
 
-        val buttonJoinMatch = vista.findViewById<Button>(R.id.buttonJoinMatch)
+        val buttonLeaveMatch = vista.findViewById<Button>(R.id.buttonLeaveMatch)
 
-        buttonJoinMatch.setOnClickListener {
-            if(userId == match.hostId){
-                Toast.makeText(requireContext(), "No se puede unir a un partido que ud mismo ha creado", Toast.LENGTH_LONG).show()
-            }
-            else{
-                if (cuposLibres == 0) {
-                    Toast.makeText(requireContext(), "Ya no quedan cupos libres en el partido", Toast.LENGTH_LONG).show()
-                } else
-                joinMatch(userId, match.id)
-            }
+        buttonLeaveMatch.setOnClickListener {
+                leaveMatch(userId, match.id)
         }
     }
 
-    private fun joinMatch(userId: Int, matchId: Int) {
+    private fun leaveMatch(userId: Int, matchId: Int) {
         val retrofitClient = RetrofitClientBuilderHeroku.buildService(
             RetrofitMatchPlayerService::class.java)
 
-        retrofitClient.joinMatch(userId, matchId).enqueue(object :
+        retrofitClient.leaveMatch(userId, matchId).enqueue(object :
             Callback<Void> {
             override fun onResponse(
                 call: Call<Void>,
                 response: Response<Void>
             ) {
                 if (response.isSuccessful) {
-                    val action = MatchDetailFragmentDirections.actionMatchDetailFragmentToSuccesfullMatchJoinFragment()
+                    val action = JoinedMatchDetailFragmentDirections.actionJoinedMatchDetailFragmentToJoinedMatchFragment()
                     vista.findNavController().navigate((action))
                 }
                 else{
