@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Futbol Tinder</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="registrationFragmentBaseText">Registro</string>
+    <string name="app_name">Fútbol Tinder</string>
+    <string name="crear_cuenta">Crear Cuenta</string>
     <string name="nameFieldRegistrationFormText">Nombre</string>
     <string name="lastNameFieldRegistrationFormText">Apellido</string>
     <string name="usernameFieldRegistrationFormText">Nombre de usuario</string>
@@ -9,7 +8,7 @@
     <string name="passwordFieldRegistrationFormText">Contraseña</string>
     <string name="passwordBisFieldRegistrationFormText">Repita contraseña</string>
     <string name="registrationFormButtonText">Registrarse</string>
-    <string name="homeLoginBaseText">Futbol Tinder App!</string>
+    <string name="homeLoginBaseText">Fútbol Tinder App!</string>
     <string name="homeRegistrationButtonText">Registrarse</string>
     <string name="homeLoginButtonText">Iniciar sesión</string>
     <string name="joinMatchButton">Unirme!</string>
@@ -33,7 +32,12 @@
     <string name="encuentra_a_tus_compa_eros_de_equipo">Encuentra a tus compañeros de equipo!</string>
     <string name="api_error">Ha ocurrido un error. Por favor probá de vuelta más tarde</string>
     <string name="location_message">Por favor, habilitá la ubicación en tu dispositivo</string>
-    <string name="end_session_success_text">Ha cerrado la sesión exitosamente!</string>
+    <string name="end_session_success_text">Ha cerrado sesión exitosamente!</string>
     //PARAMS_NAMES_CONSTANTES
     <string name="USER_ID_PARAM_NAME">userId</string>
+    <string name="back_to_home">Volver a Inicio</string>
+    <string name="match_created_successfuly">El partido se ha creado con éxito!</string>
+    <string name="leaveMatchButton">Des-Unirme!</string>
+
+
 </resources>

@@ -3,14 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id= "@+id/matchBaseFragment"
-        android:title="@string/inicio"/>
+        android:id= "@+id/action_match_base"
+        android:title="@string/inicio"
+        android:icon="@drawable/ic_home"/>
     <item
-        android:id= "@+id/matchCreatorFragment"
-        android:title="Crear"/>
-    <item android:id= "@+id/matchListFragment"
-        android:title="Buscar"/>
-   <!-- <item
-        android:id="@+id/joinedMatchFragment"
-        android:title="Unidos" />-->
+        android:id= "@+id/action_match_creator"
+        android:title="Crear"
+        android:icon="@drawable/ic_create"/>
+
+    <item android:id= "@+id/action_match_list"
+        android:title="Buscar"
+        android:icon="@drawable/ic_search"/>
+
 </menu>

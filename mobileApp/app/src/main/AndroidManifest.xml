@@ -15,9 +15,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_soccer"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_soccer"
         android:supportsRtl="true"
         android:theme="@style/Theme.FutbolTinder"
         android:usesCleartextTraffic="true"
@@ -57,6 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.login.LoginActivity"
+            android:noHistory="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,7 +9,7 @@
         android:id="@+id/matchCreatorFragment"
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.MatchCreatorFragment"
         android:label="fragment_match_creator"
-        tools:layout="@layout/fragment_match_creator" >
+        tools:layout="@layout/fragment_match_creator">
         <action
             android:id="@+id/action_matchCreatorFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/matchListFragment"
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.MatchListFragment"
         android:label="fragment_match_list"
-        tools:layout="@layout/fragment_match_list" >
+        tools:layout="@layout/fragment_match_list">
         <action
             android:id="@+id/action_matchListFragment_to_matchDetailFragment"
             app:destination="@id/matchDetailFragment" />
@@ -40,8 +40,8 @@
     <fragment
         android:id="@+id/matchDetailFragment"
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.MatchDetailFragment"
-        android:label="fragment_match_detail2"
-        tools:layout="@layout/fragment_match_detail2" >
+        android:label="fragment_match_detail"
+        tools:layout="@layout/fragment_match_detail">
         <argument
             android:name="match"
             app:argType="ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse" />
@@ -52,7 +52,7 @@
     <fragment
         android:id="@+id/mapsFragment"
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.MapsFragment"
-        android:label="MapsFragment" >
+        android:label="MapsFragment">
         <action
             android:id="@+id/action_mapsFragment_to_successFragment"
             app:destination="@id/successFragment" />
@@ -64,12 +64,16 @@
         android:id="@+id/joinedMatchFragment"
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.JoinedMatchFragment"
         android:label="fragment_joined_match"
-        tools:layout="@layout/fragment_joined_match" />
+        tools:layout="@layout/fragment_joined_match">
+        <action
+            android:id="@+id/action_joinedMatchFragment_to_joinedMatchDetailFragment"
+            app:destination="@id/joinedMatchDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/succesfullMatchJoinFragment"
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.SuccesfullMatchJoinFragment"
         android:label="fragment_succesfull_match_join"
-        tools:layout="@layout/fragment_succesfull_match_join" >
+        tools:layout="@layout/fragment_succesfull_match_join">
         <action
             android:id="@+id/action_succesfullMatchJoinFragment_to_joinedMatchFragment"
             app:destination="@id/joinedMatchFragment" />
@@ -79,4 +83,17 @@
         android:name="ort.edu.ar.futboltinder.activities.home.fragments.EndSessionFragment"
         android:label="fragment_end_session"
         tools:layout="@layout/fragment_end_session" />
+    <fragment
+        android:id="@+id/joinedMatchDetailFragment"
+        android:name="ort.edu.ar.futboltinder.activities.home.fragments.JoinedMatchDetailFragment"
+        android:label="JoinedMatchDetailFragment">
+        <argument
+            android:name="match"
+            app:argType="ort.edu.ar.futboltinder.domain.Match.Responses.MatchListResponse" />
+        <action
+            android:id="@+id/action_joinedMatchDetailFragment_to_joinedMatchFragment"
+            app:destination="@id/joinedMatchFragment"
+            app:popUpTo="@id/joinedMatchDetailFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

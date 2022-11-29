@@ -2,11 +2,13 @@ package ort.edu.ar.futboltinder.activities.home.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ort.edu.ar.futboltinder.R
@@ -29,6 +31,8 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+            "Partidos a los que me uní"
         return inflater.inflate(R.layout.fragment_joined_match, container, false)
     }
 
@@ -46,7 +50,7 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
                 if (response.isSuccessful) {
                     val matchesList = response.body()
 
-                    val adapter = matchesList?.let { MatchJoinedAdapter(it) }
+                    val adapter = matchesList?.let { MatchAdapter(it, this@JoinedMatchFragment) }
                     recyclerView.layoutManager = LinearLayoutManager(context)
                     recyclerView.adapter = adapter
                 }
@@ -66,7 +70,7 @@ class JoinedMatchFragment : Fragment(),OnMatchClickedListener {
     }
 
     override fun onMatchSelected(match: MatchListResponse) {
-        TODO("Not yet implemented")
+        findNavController().navigate(JoinedMatchFragmentDirections.actionJoinedMatchFragmentToJoinedMatchDetailFragment(match))
     }
 
 
